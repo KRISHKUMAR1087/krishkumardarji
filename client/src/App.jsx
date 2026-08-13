@@ -10,6 +10,8 @@ import {
   Achievements,
   Certifications,
   Projects,
+  Hackathons,
+  GitHubHighlights,
   Contact,
   ScrollProgress,
 } from './components';
@@ -19,7 +21,6 @@ import './styles/global.css';
 function AppContent({ data, loading, error }) {
   return (
     <>
-      <MotionBackdrop />
       <ScrollProgress />
       <AnimatedCursor />
       <Navigation />
@@ -30,6 +31,8 @@ function AppContent({ data, loading, error }) {
       <Achievements data={data} />
       <Certifications data={data} />
       <Projects data={data} />
+      <Hackathons />
+      <GitHubHighlights data={data} />
       <Contact data={data} />
     </>
   );

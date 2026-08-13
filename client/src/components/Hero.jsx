@@ -1,11 +1,52 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowDown } from 'react-icons/fi';
 
 export const Hero = ({ data }) => {
+  const roles = [
+    "B.Tech (CE)",
+    "Vibe Coder",
+    "Software Developer",
+    "Gen-AI Full Stack WEB Developer",
+    "UI/UX Designer",
+    "Open Source Contributor",
+    "Hackathon Top 20",
+    "Building Real-World Projects"
+  ];
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    const activeRole = roles[currentRoleIndex];
+
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setDisplayText((prev) => prev.slice(0, -1));
+      }, 20);
+    } else {
+      timer = setTimeout(() => {
+        setDisplayText((prev) => activeRole.slice(0, prev.length + 1));
+      }, 40);
+    }
+
+    if (!isDeleting && displayText === activeRole) {
+      timer = setTimeout(() => {
+        setIsDeleting(true);
+      }, 1000);
+    } else if (isDeleting && displayText === '') {
+      setIsDeleting(false);
+      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, currentRoleIndex, roles]);
+
   const quickStats = [
     { label: 'Projects', value: data.projects?.length || 0 },
     { label: 'Certifications', value: data.courses?.length || 0 },
-    { label: 'Hackathons Participation', value: '10' },
+    { label: 'Hackathons Participation', value: '18' },
   ];
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -27,89 +68,52 @@ export const Hero = ({ data }) => {
     },
   };
 
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.7 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-    animate: {
-      y: [-15, 15, -15],
-      boxShadow: [
-        '0 20px 60px rgba(108, 99, 255, 0.15)',
-        '0 30px 80px rgba(0, 255, 136, 0.25)',
-        '0 20px 60px rgba(108, 99, 255, 0.15)',
-      ],
-      transition: { duration: 4, repeat: Infinity },
-    },
-  };
-
   return (
     <section className="hero" id="home">
       <div className="hero-content">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible">
-          <motion.div
-            variants={imageVariants}
-            animate="animate"
-            className="avatar-wrapper"
-          >
-            <img
-              src={data.personal?.profileImage || '/images/krish.jpeg'}
-              onError={(e) => {
-                e.currentTarget.src = '/images/krish.jpeg';
-              }}
-              alt="Profile"
-              className="hero-image"
-            />
-            <motion.div
-              className="avatar-glow"
-              animate={{
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
-          </motion.div>
+        <motion.div 
+          className="hero-grid"
+          variants={containerVariants} 
+          initial="hidden" 
+          animate="visible"
+        >
+          {/* Left Column Spacer (houses the background image character) */}
+          <div className="hero-spacer-col" />
 
-          <motion.h1 variants={itemVariants}>
-            {data.personal?.name}
-          </motion.h1>
-
-          <motion.p className="subtitle" variants={itemVariants}>
-            {data.personal?.title}
-          </motion.p>
-
-          <motion.p variants={itemVariants} className="hero-bio">
-            {data.personal?.bio}
-          </motion.p>
-
-          <motion.div variants={itemVariants} className="hero-stats">
-            {quickStats.map((stat) => (
-              <div key={stat.label} className="hero-stat">
-                <strong>{stat.value}+</strong>
-                <span>{stat.label}</span>
-              </div>
-            ))}
-          </motion.div>
-
-          <motion.div variants={itemVariants} style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <motion.a
-              href="#projects"
-              className="btn btn-secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          {/* Right Column: Text & Stats */}
+          <div className="hero-text-col">
+            <motion.h1 
+              variants={itemVariants} 
+              className="hero-title"
+              style={{ display: 'flex', alignItems: 'center', gap: '15px', flexWrap: 'nowrap', whiteSpace: 'nowrap', marginBottom: '10px' }}
             >
-              See My Projects
-            </motion.a>
-            <motion.a
-              href="#contact"
-              className="btn btn-secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get In Touch
-            </motion.a>
-          </motion.div>
+              {data.personal?.name}
+              <span style={{ fontSize: '0.85rem', background: 'rgba(255, 255, 255, 0.08)', padding: '5px 12px', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '20px', fontWeight: '500', color: 'var(--accent-2)', fontFamily: 'var(--font-mono)' }}>He/Him</span>
+            </motion.h1>
+
+            <div className="hero-role-wrapper">
+              <p
+                className="subtitle"
+                style={{ margin: 0, color: 'var(--accent-2)', letterSpacing: '0.05em', fontWeight: '600', textTransform: 'uppercase', minHeight: '1.8em', display: 'flex', alignItems: 'center' }}
+              >
+                {displayText}
+                <span className="typewriter-cursor">|</span>
+              </p>
+            </div>
+
+            <motion.p variants={itemVariants} className="hero-bio">
+              {data.personal?.bio}
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="hero-stats">
+              {quickStats.map((stat) => (
+                <div key={stat.label} className="hero-stat">
+                  <strong>{stat.value}+</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </motion.div>
 
         <motion.div
@@ -129,3 +133,4 @@ export const Hero = ({ data }) => {
     </section>
   );
 };
+

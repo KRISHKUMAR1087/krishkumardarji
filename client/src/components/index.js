@@ -11,3 +11,5 @@ export { Contact } from './Contact';
 export { AnimatedCard } from './AnimatedCard';
 export { MotionBackdrop } from './MotionBackdrop';
 export { ScrollProgress } from './ScrollProgress';
+export { GitHubHighlights } from './GitHubHighlights';
+export { Hackathons } from './Hackathons';
