@@ -1,14 +1,8 @@
 export const portfolioData = {
   personal: {
-<<<<<<< Updated upstream
     name: "Darji Krishkumar H.",
     title: "Full Stack Developer & Data Science Enthusiast",
     bio: "Currently pursuing a Bachelor of Technology in Computer Engineering at CHARUSAT with hands-on experience in full-stack development, AI-powered applications, data science, and digital hardware design. Built scalable projects using React, FastAPI, Node.js, and PostgreSQL, including an AI-powered mock interview platform and a high-performance file processing API. Strong foundation in Data Structures, DBMS, Web Development, and Python.",
-=======
-    name: "KRISHKUMAR DARJI",
-    title: "B.Tech (CE) | Vibe Coder | Software Developer | Gen-AI Full Stack WEB Developer | Open Source Contributor | Hackathon Top 20 | Building Real-World Projects | UI/UX Designer",
-    bio: "Computer Engineering student passionate about solving problems, learning new technologies, and building practical solutions. Skilled in Python, Java, SQL, PHP, MERN stack, databases, data analysis, machine learning, and UI/UX design. Experienced with AI tools like ChatGPT, Claude, GitHub Copilot, and Lovable for development, debugging, and rapid prototyping. Aspiring to build scalable, user-friendly solutions and grow as a Solution Engineer.",
->>>>>>> Stashed changes
     email: "darjjikrishkumar45@gmail.com",
     profileImage: "/images/krish.jpeg",
     location: "Charotar, India",
