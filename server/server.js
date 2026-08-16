@@ -67,12 +67,11 @@ app.get('/api/social', (req, res) => {
   res.json(portfolioData.social);
 });
 
-// Note: For production, uncomment the lines below and run 'npm run build' first
-// Serve static files from client dist (production)
-// app.use(express.static(path.join(__dirname, '../client/dist')));
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-// });
+// Serve static files from client dist
+app.use(express.static(path.join(__dirname, '../client/dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`✨ Portfolio server running on http://localhost:${PORT}`);
