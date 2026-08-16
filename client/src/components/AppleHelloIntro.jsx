@@ -4,9 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 const greetings = [
   "hello",
   "नमस्ते",
-  "bonjour",
-  "hola",
-  "kem cho"
+  "નમસ્કાર",
+  "खम्मा घणी"
 ];
 
 export const AppleHelloIntro = ({ onComplete }) => {
@@ -14,7 +13,7 @@ export const AppleHelloIntro = ({ onComplete }) => {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    // Cycle greeting every 450ms
+    // Cycle greeting every 500ms
     const interval = setInterval(() => {
       setIndex((prev) => {
         if (prev + 1 >= greetings.length) {
@@ -22,12 +21,12 @@ export const AppleHelloIntro = ({ onComplete }) => {
           setTimeout(() => {
             setIsDone(true);
             if (onComplete) onComplete();
-          }, 550);
+          }, 650);
           return prev;
         }
         return prev + 1;
       });
-    }, 400);
+    }, 480);
 
     return () => clearInterval(interval);
   }, [onComplete]);
@@ -37,7 +36,7 @@ export const AppleHelloIntro = ({ onComplete }) => {
       {!isDone && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, y: -40 }}
+          exit={{ opacity: 0, y: -30 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="apple-hello-intro-overlay"
         >
@@ -45,10 +44,10 @@ export const AppleHelloIntro = ({ onComplete }) => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={greetings[index]}
-                initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                initial={{ opacity: 0, y: 14, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -15, scale: 0.95 }}
-                transition={{ duration: 0.22, ease: "easeOut" }}
+                exit={{ opacity: 0, y: -14, scale: 0.96 }}
+                transition={{ duration: 0.24, ease: "easeOut" }}
                 className="apple-hello-intro-text"
               >
                 {greetings[index]}
