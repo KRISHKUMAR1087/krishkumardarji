@@ -1,133 +1,116 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiArrowUp } from 'react-icons/fi';
 import {
-  AnimatedCursor,
   Navigation,
   Hero,
   MotionBackdrop,
   About,
-  Hobbies,
+  Projects,
+  Hackathons,
   Education,
   Achievements,
   Certifications,
-  Projects,
-  Hackathons,
+  Hobbies,
   GitHubHighlights,
   Contact,
   ScrollProgress,
+  AnimatedCursor,
+  AppleHelloIntro,
 } from './components';
+import { portfolioData as initialData } from './data/fallbackData';
 import { ThemeProvider } from './context/ThemeContext';
 import './styles/global.css';
 
-function AppContent({ data, loading, error }) {
+function AppContent({ data }) {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== 'undefined' && window.scrollY > 400) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const safeData = data || initialData;
+
   return (
     <>
-      <ScrollProgress />
+      <AppleHelloIntro />
       <AnimatedCursor />
+      <ScrollProgress />
+      <MotionBackdrop />
       <Navigation />
-      <Hero data={data} />
-      <About data={data} />
-      <Hobbies data={data} />
-      <Education data={data} />
-      <Achievements data={data} />
-      <Certifications data={data} />
-      <Projects data={data} />
-      <Hackathons />
-      <GitHubHighlights data={data} />
-      <Contact data={data} />
+      
+      <main>
+        <Hero data={safeData} />
+        <About data={safeData} />
+        <Projects data={safeData} />
+        <Hackathons data={safeData} />
+        <Education data={safeData} />
+        <Achievements data={safeData} />
+        <Certifications data={safeData} />
+        <Hobbies data={safeData} />
+        <GitHubHighlights data={safeData} />
+        <Contact data={safeData} />
+      </main>
+
+      {/* Floating Back To Top Button */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            onClick={scrollToTop}
+            className="back-to-top-btn"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            <FiArrowUp size={20} />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </>
   );
 }
 
 function App() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState(initialData);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('/api/portfolio');
-        if (!response.ok) {
-          throw new Error('Failed to fetch portfolio data');
+        if (response.ok) {
+          const result = await response.json();
+          setData((prev) => ({ ...prev, ...result }));
         }
-        const result = await response.json();
-        setData(result);
       } catch (err) {
-        setError(err.message);
-        console.error('Error fetching data:', err);
-      } finally {
-        setLoading(false);
+        // Fallback silently
       }
     };
 
     fetchData();
   }, []);
 
-  if (loading) {
-    return (
-      <ThemeProvider>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: '100vh',
-            background: 'linear-gradient(135deg, #0A0F1F 0%, #111725 50%, #0A0F1F 100%)',
-            fontSize: '1.2rem',
-            color: '#E9ECF5',
-          }}
-        >
-          <div style={{ textAlign: 'center' }}>
-            <div
-              style={{
-                width: '40px',
-                height: '40px',
-                border: '4px solid rgba(108, 99, 255, 0.3)',
-                borderTop: '4px solid #6C63FF',
-                borderRadius: '50%',
-                margin: '0 auto 20px',
-                animation: 'spin 1s linear infinite',
-              }}
-            />
-            <p>Loading portfolio...</p>
-            <style>{`
-              @keyframes spin {
-                to { transform: rotate(360deg); }
-              }
-            `}</style>
-          </div>
-        </div>
-      </ThemeProvider>
-    );
-  }
-
-  if (error || !data) {
-    return (
-      <ThemeProvider>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: '100vh',
-            background: 'linear-gradient(135deg, #0A0F1F 0%, #111725 50%, #0A0F1F 100%)',
-            color: '#E9ECF5',
-            textAlign: 'center',
-            padding: '20px',
-          }}
-        >
-          <div>
-            <h2 style={{ marginBottom: '10px', color: '#6C63FF' }}>Error Loading Portfolio</h2>
-            <p>Please make sure the server is running at http://localhost:5000</p>
-          </div>
-        </div>
-      </ThemeProvider>
-    );
-  }
-
   return (
     <ThemeProvider>
-      <AppContent data={data} loading={loading} error={error} />
+      <AppContent data={data} />
     </ThemeProvider>
   );
 }

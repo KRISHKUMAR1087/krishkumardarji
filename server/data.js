@@ -3,10 +3,10 @@ export const portfolioData = {
     name: "Darji Krishkumar H.",
     title: "Full Stack Developer & Data Science Enthusiast",
     bio: "Currently pursuing a Bachelor of Technology in Computer Engineering at CHARUSAT with hands-on experience in full-stack development, AI-powered applications, data science, and digital hardware design. Built scalable projects using React, FastAPI, Node.js, and PostgreSQL, including an AI-powered mock interview platform and a high-performance file processing API. Strong foundation in Data Structures, DBMS, Web Development, and Python.",
-    email: "darjjikrishkumar45@gmail.com",
+    email: "hello@krishkumardarji.com",
     profileImage: "/images/krish.jpeg",
     location: "Charotar, India",
-    cgpa: "7.55/10"
+    cgpa: "7.56/10"
   },
 
   professionalSummary: "Currently pursuing a Bachelor of Technology in Computer Engineering at CHARUSAT with hands-on experience in full-stack development, AI powered applications, data science, and digital hardware design. Built scalable projects using React, FastAPI, Node.js, and PostgreSQL, including an AI-powered mock interview platform and a high-performance file processing API. Strong foundation in Data Structures, DBMS, Web Development, and Python, with proven problem-solving skills demonstrated through hackathons, certifications, and coding competitions.",
@@ -120,7 +120,7 @@ export const portfolioData = {
     collegeName: "Devang Patel Institute of Advanced Technology and Research (DEPSTAR)",
     university: "Charotar University of Science and Technology (CHARUSAT)",
     program: "B.Tech Computer Engineering (2024–2028)",
-    cgpa: "7.55/10 (Till 3rd Semester)",
+    cgpa: "7.56/10 (Cumulative Till 4th Semester)",
     semesters: [
       {
         number: 1,
@@ -135,6 +135,11 @@ export const portfolioData = {
       {
         number: 3,
         cgpa: "7.55/10",
+        certificate: null
+      },
+      {
+        number: 4,
+        cgpa: "7.57/10",
         certificate: null
       }
     ]
@@ -403,7 +408,7 @@ export const portfolioData = {
   ],
 
   social: {
-    email: "darjjikrishkumar45@gmail.com",
+    email: "hello@krishkumardarji.com",
     linkedin: "https://www.linkedin.com/in/krishkumar-d-b4a7952b1",
     github: "https://github.com/KRISHKUMAR1087",
     instagram: "https://www.instagram.com/genzkrish",
