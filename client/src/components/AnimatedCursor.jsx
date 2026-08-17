@@ -27,8 +27,8 @@ export const AnimatedCursor = () => {
       const dy = mouseY - lastPos.current.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Spawn every 22px traveled
-      if (dist > 22) {
+      // Trigger every 11px for ultra-responsive fast trail
+      if (dist > 11) {
         const char = fullText[textIndex.current % fullText.length];
         textIndex.current += 1;
 
@@ -37,13 +37,13 @@ export const AnimatedCursor = () => {
             char,
             x: mouseX,
             y: mouseY,
-            vx: (Math.random() - 0.5) * 0.4,
-            vy: -0.4 - Math.random() * 0.3,
+            vx: (Math.random() - 0.5) * 0.9,
+            vy: -0.9 - Math.random() * 0.6,
             opacity: 1,
             scale: 1.05,
-            rotation: (Math.random() - 0.5) * 10,
+            rotation: (Math.random() - 0.5) * 14,
             life: 0,
-            maxLife: 110 // ~1.85 seconds lifetime for sustained readability
+            maxLife: 55 // Snappy ~0.9s lifetime
           };
           particles.current.push(particle);
           if (particles.current.length > 50) {
@@ -73,12 +73,12 @@ export const AnimatedCursor = () => {
           p.x += p.vx;
           p.y += p.vy;
           
-          // Stay full opacity for first 60% of lifetime, then gently fade out
+          // Full opacity for first 40% of lifetime, then smooth fade
           const progress = p.life / p.maxLife;
-          if (progress < 0.6) {
+          if (progress < 0.4) {
             p.opacity = 1;
           } else {
-            p.opacity = Math.max(0, 1 - (progress - 0.6) / 0.4);
+            p.opacity = Math.max(0, 1 - (progress - 0.4) / 0.6);
           }
 
           p.scale = Math.max(0.85, 1.05 - progress * 0.2);
@@ -122,7 +122,7 @@ export const AnimatedCursor = () => {
 
   return (
     <>
-      {/* Floating Sustained Trail Characters Container */}
+      {/* Floating Fast Trail Characters Container */}
       <div
         ref={containerRef}
         style={{
