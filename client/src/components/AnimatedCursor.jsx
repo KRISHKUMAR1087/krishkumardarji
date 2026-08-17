@@ -43,7 +43,7 @@ export const AnimatedCursor = () => {
             scale: 1.05,
             rotation: (Math.random() - 0.5) * 14,
             life: 0,
-            maxLife: 55 // Snappy ~0.9s lifetime
+            maxLife: 55
           };
           particles.current.push(particle);
           if (particles.current.length > 50) {
@@ -62,7 +62,7 @@ export const AnimatedCursor = () => {
         dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
       }
 
-      // Update and render floating particle elements
+      // Update and render clean floating particle elements (Pure solid crisp white)
       const container = containerRef.current;
       if (container) {
         container.innerHTML = '';
@@ -73,7 +73,6 @@ export const AnimatedCursor = () => {
           p.x += p.vx;
           p.y += p.vy;
           
-          // Full opacity for first 40% of lifetime, then smooth fade
           const progress = p.life / p.maxLife;
           if (progress < 0.4) {
             p.opacity = 1;
@@ -98,7 +97,7 @@ export const AnimatedCursor = () => {
           span.style.fontSize = '14px';
           span.style.fontWeight = '800';
           span.style.fontFamily = "'JetBrains Mono', monospace";
-          span.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.95), 0 0 20px rgba(0, 240, 255, 0.6), 0 0 30px rgba(0, 255, 163, 0.4)';
+          span.style.textShadow = '0 2px 8px rgba(0, 0, 0, 0.9)'; // Pure crisp shadow, zero neon
           span.style.opacity = p.opacity;
           span.style.pointerEvents = 'none';
           span.style.userSelect = 'none';
@@ -122,7 +121,7 @@ export const AnimatedCursor = () => {
 
   return (
     <>
-      {/* Floating Fast Trail Characters Container */}
+      {/* Floating Clean Trail Characters Container */}
       <div
         ref={containerRef}
         style={{
@@ -137,7 +136,7 @@ export const AnimatedCursor = () => {
         }}
       />
 
-      {/* Leading Glow Dot */}
+      {/* Clean Solid White Leading Dot (Zero Neon) */}
       <div
         ref={dotRef}
         style={{
@@ -148,7 +147,7 @@ export const AnimatedCursor = () => {
           height: 6,
           borderRadius: '50%',
           background: '#ffffff',
-          boxShadow: '0 0 10px #ffffff, 0 0 20px #00f0ff, 0 0 30px #00ffa3',
+          boxShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.8)',
           pointerEvents: 'none',
           zIndex: 99999,
           willChange: 'transform'

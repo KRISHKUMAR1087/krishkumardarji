@@ -13,7 +13,7 @@ export const Projects = ({ data }) => {
           </div>
           <h2>Engineered Projects & MVPs</h2>
           <p>
-            A curated showcase of full-stack web platforms, AI systems, digital hardware designs, and hackathon prototypes.
+            A curated showcase of full-stack web platforms, AI systems, and real-world software applications.
           </p>
         </div>
 
@@ -44,21 +44,6 @@ export const Projects = ({ data }) => {
 
                   <p className="project-desc">{project.description}</p>
 
-                  {/* UX & Architectural Highlights */}
-                  {project.uxHighlights && project.uxHighlights.length > 0 && (
-                    <div className="project-highlights-box">
-                      <div className="project-highlights-title">
-                        <FiCheckCircle style={{ color: 'var(--accent-cyan)' }} />
-                        <span>Key UX & Architecture Highlights</span>
-                      </div>
-                      <ul className="project-highlights-list">
-                        {project.uxHighlights.map((highlight, hIdx) => (
-                          <li key={hIdx}>{highlight}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
                   {/* Tech Stack Chips */}
                   <div className="project-tech-pills">
                     {project.tags?.map((tag, tagIdx) => (
@@ -79,7 +64,7 @@ export const Projects = ({ data }) => {
                       className="project-link-btn"
                     >
                       <span>Live Site</span>
-                      <FiExternalLink size={16} />
+                      <FiExternalLink size={15} />
                     </a>
                   )}
 
@@ -90,7 +75,7 @@ export const Projects = ({ data }) => {
                     className="project-link-btn"
                     style={{ color: 'var(--text-secondary)' }}
                   >
-                    <FiGithub size={16} />
+                    <FiGithub size={15} />
                     <span>View Repository</span>
                   </a>
                 </div>

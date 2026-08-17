@@ -375,34 +375,27 @@ export const portfolioData = {
 
   projects: [
     {
-      title: "8-Bit Binary Password Security System",
-      subtitle: "Digital Hardware Design Project",
-      description: "Designed and implemented an 8-bit binary password security system using XOR, NOT, and AND logic gates on a breadboard with DIP switches and LEDs. The system enables access only when the entered 8-bit code exactly matches the predefined password. This project demonstrates proficiency in digital logic design and hardware implementation.",
-      tags: ["Digital Logic", "Hardware Design", "DIP Switches", "LEDs"],
-      link: null,
-      image: null
+      title: "Genie Website",
+      subtitle: "AI Web Platform & Multi-Agent Assistant",
+      category: "Gen-AI Application",
+      description: "An intelligent Gen-AI assistant and workflow automation web platform designed to streamline digital tasks, generative workflows, and real-time smart user interactions with an ultra-responsive modern UI.",
+      tags: ["React", "FastAPI", "Gen-AI", "LLMs", "TailwindCSS", "Node.js"],
+      link: null
     },
     {
-      title: "AI-Based Interview System",
-      subtitle: "Full-Stack AI Application",
-      description: "Developed an AI-powered mock interview platform using FastAPI backend and React frontend with PostgreSQL database. Delivers real-time interview simulations with instant technical feedback, secure JWT-based authentication, and a scalable backend supporting 20+ file conversion workflows optimized through in-memory streaming. This project demonstrates expertise in modern full-stack development and AI integration.",
-      tags: ["FastAPI", "React", "PostgreSQL", "AI/ML", "JWT", "Real-time Feedback"],
-      link: null,
-      image: null
+      title: "Appointment Management System",
+      subtitle: "Enterprise Internship Project",
+      category: "Full-Stack Web App",
+      description: "Comprehensive scheduling and booking platform engineered during internship. Features real-time slot reservation, automated reminders, doctor/client dashboard, role-based access control, and secure database management.",
+      tags: ["React", "Node.js", "Express", "PostgreSQL", "REST APIs", "JWT Auth"],
+      link: null
     },
     {
-      title: "Student Management System",
-      subtitle: "E-Governance Platform",
-      description: "A comprehensive student administration portal developed in 3rd semester. Features include student registration, attendance tracking, grade management, and report generation. Built with PHP, MySQL, HTML, CSS, and JavaScript with a focus on usability and data security.",
-      tags: ["PHP", "MySQL", "HTML/CSS", "JavaScript"],
-      link: "https://desk4u.wuaze.com",
-      image: null
-    },
-    {
-      title: "Hackathon Project Experience",
-      subtitle: "Odoo & Intercollege Hackathons",
-      description: "Completed multiple project builds during different hackathons, including Odoo hackathons and intercollege hackathons. Worked on rapid ideation, prototype implementation, teamwork, and final presentation delivery under strict time constraints.",
-      tags: ["Hackathons", "Rapid Prototyping", "Teamwork", "Problem Solving"],
+      title: "VanniDoc Project",
+      subtitle: "Smart Healthcare Documentation & Management",
+      category: "Healthcare System",
+      description: "A centralized digital clinical documentation and patient records platform that streamlines medical reporting, appointment workflows, and secure medical file management with clean data validation.",
+      tags: ["React", "TypeScript", "Node.js", "MongoDB", "Healthcare Tech", "UI/UX"],
       link: null
     }
   ],

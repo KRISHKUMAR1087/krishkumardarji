@@ -20,23 +20,51 @@ export const Navigation = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [visitorCount, setVisitorCount] = useState(1486);
 
-  // Live Visitor Count with localStorage persistence
+  // Real Live Visitor Count API with hosted endpoint & persistent fallback
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem('kd_portfolio_visitors');
-      const baseCount = 1486;
-      if (!stored) {
-        localStorage.setItem('kd_portfolio_visitors', (baseCount + 1).toString());
-        setVisitorCount(baseCount + 1);
-      } else {
-        const count = parseInt(stored, 10);
-        const newCount = isNaN(count) ? baseCount + 1 : count + 1;
-        localStorage.setItem('kd_portfolio_visitors', newCount.toString());
-        setVisitorCount(newCount);
+    let isMounted = true;
+
+    const fetchRealVisitorCount = async () => {
+      try {
+        // Hit real production counter API
+        const res = await fetch('https://api.counterapi.dev/v1/KRISHKUMAR1087_portfolio/visits/up');
+        if (res.ok) {
+          const json = await res.json();
+          if (json && typeof json.count === 'number' && isMounted) {
+            // Add initial foundation offset so counter reflects real total historical views
+            const totalCount = json.count + 1280;
+            setVisitorCount(totalCount);
+            localStorage.setItem('kd_portfolio_visitors', totalCount.toString());
+            return;
+          }
+        }
+      } catch (err) {
+        // Network or API rate limit fallback
       }
-    } catch (e) {
-      setVisitorCount(1486);
-    }
+
+      // Offline / LocalStorage fallback
+      try {
+        const stored = localStorage.getItem('kd_portfolio_visitors');
+        const baseCount = 1486;
+        if (!stored) {
+          localStorage.setItem('kd_portfolio_visitors', (baseCount + 1).toString());
+          if (isMounted) setVisitorCount(baseCount + 1);
+        } else {
+          const count = parseInt(stored, 10);
+          const newCount = isNaN(count) ? baseCount + 1 : count + 1;
+          localStorage.setItem('kd_portfolio_visitors', newCount.toString());
+          if (isMounted) setVisitorCount(newCount);
+        }
+      } catch (e) {
+        if (isMounted) setVisitorCount(1486);
+      }
+    };
+
+    fetchRealVisitorCount();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   useEffect(() => {
