@@ -52,31 +52,49 @@ export const Contact = ({ data, onOpenAdmin }) => {
       read: false
     };
 
+    // 1. Save query to Admin Dashboard local storage
     try {
       const existing = localStorage.getItem('kd_visitor_queries');
       const queries = existing ? JSON.parse(existing) : [];
       queries.unshift(queryObj);
       localStorage.setItem('kd_visitor_queries', JSON.stringify(queries));
+    } catch (err) {}
+
+    // 2. Direct Email Delivery to your Inbox via FormSubmit API
+    try {
+      await fetch('https://formsubmit.co/ajax/hello@krishkumardarji.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `🏎️ PIT WALL TRANSMISSION: ${formState.purpose || 'New Message from Portfolio'}`,
+          _template: 'table',
+          'Driver / Caller Name': formState.name,
+          'Caller Email': formState.email,
+          'Purpose / Opportunity': formState.purpose || 'General Transmission',
+          'Transmission Message': formState.message,
+          'Telemetry Timestamp': new Date().toLocaleString()
+        })
+      });
     } catch (err) {
       // Fallback
     }
 
+    // 3. Local backend sync if running
     try {
       await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(queryObj)
       });
-    } catch (err) {
-      // Resilient offline
-    }
+    } catch (err) {}
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setFormState({ name: '', email: '', purpose: '', message: '' });
-      setTimeout(() => setSubmitSuccess(false), 5000);
-    }, 500);
+    setIsSubmitting(false);
+    setSubmitSuccess(true);
+    setFormState({ name: '', email: '', purpose: '', message: '' });
+    setTimeout(() => setSubmitSuccess(false), 6000);
   };
 
   const socialLinks = [
