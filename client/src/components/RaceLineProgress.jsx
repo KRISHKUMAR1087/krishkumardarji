@@ -1,15 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useSpring, useMotionValueEvent } from 'framer-motion';
+import { f1Audio } from '../utils/f1Audio';
 
 /**
  * RaceLineProgress
  * Replaces a plain top progress bar with an F1-style race line:
  * - A glowing "track" line fills as the user scrolls
  * - Checkpoint dots light up as each section is passed (lap markers)
- * - A live "speed" readout (px/s) reacts to scroll velocity, like a telemetry HUD
- *
- * Usage: <RaceLineProgress sections={['hero','about','telemetry','projects', ...]} />
- * Pass the same ids you use on each <section id="..."> so checkpoints align.
+ * - A live "speed" readout (px/s) reacts to scroll velocity with real-time gear audio
  */
 export const RaceLineProgress = ({ sections = [] }) => {
   const { scrollYProgress } = useScroll();

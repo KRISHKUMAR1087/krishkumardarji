@@ -6,27 +6,49 @@ export const AppleHelloIntro = ({ onComplete }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    // Attempt auto-play with audio; if blocked by browser policy, play muted
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        if (videoRef.current) {
-          videoRef.current.muted = true;
-          videoRef.current.play().catch(() => {});
-        }
-      });
+    // Lock page scroll completely while intro is playing
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    const video = videoRef.current;
+    if (video) {
+      video.muted = false;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          if (video) {
+            video.muted = true;
+            video.play().catch(() => {});
+          }
+        });
+      }
     }
 
-    // Dismiss exactly at 5 seconds or upon video finish
+    // Fallback timer if video duration cannot be determined
     const timer = setTimeout(() => {
       handleComplete();
-    }, 5000);
+    }, 7000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
   }, []);
 
   const handleComplete = () => {
+    // Re-enable smooth scrolling once intro ends
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
     setIsDone(true);
     if (onComplete) onComplete();
+  };
+
+  const handleUnmute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+      videoRef.current.volume = 1.0;
+    }
   };
 
   return (
@@ -34,7 +56,7 @@ export const AppleHelloIntro = ({ onComplete }) => {
       {!isDone && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           style={{
             position: 'fixed',
@@ -44,27 +66,35 @@ export const AppleHelloIntro = ({ onComplete }) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            touchAction: 'none'
           }}
+          onClick={handleUnmute}
         >
-          {/* Full Screen Pixar Cars Movie Intro Video */}
+          {/* Authentic Intro Video (Full Screen, No Grid/Overlay) */}
           <video
             ref={videoRef}
-            src="/cars-intro.mp4"
+            src="/intro.mp4"
             autoPlay
             playsInline
+            muted={false}
+            preload="auto"
             onEnded={handleComplete}
             style={{
               width: '100vw',
               height: '100vh',
               objectFit: 'cover',
-              display: 'block'
+              display: 'block',
+              backgroundColor: '#000000'
             }}
           />
 
-          {/* Minimalist Skip Button for convenience */}
+          {/* Minimalist Skip Button */}
           <button
-            onClick={handleComplete}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleComplete();
+            }}
             style={{
               position: 'absolute',
               bottom: '24px',

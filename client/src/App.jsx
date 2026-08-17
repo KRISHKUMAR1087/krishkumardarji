@@ -22,6 +22,7 @@ import {
 } from './components';
 import { portfolioData as initialData } from './data/fallbackData';
 import { ThemeProvider } from './context/ThemeContext';
+import { f1Audio } from './utils/f1Audio';
 import './styles/global.css';
 import './styles/scroll-motion.css';
 
@@ -68,10 +69,6 @@ function AppContent({ data }) {
     if (window.location.hash === '#admin') {
       setIsAdminOpen(true);
     }
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('hashchange', handleHashChange);
-    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);

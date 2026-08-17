@@ -19,42 +19,56 @@ export const Navigation = () => {
   const [activeSection, setActiveSection] = useState('about');
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [visitorCount, setVisitorCount] = useState(1486);
+  const [visitorCount, setVisitorCount] = useState(1);
 
-  // Real Live Telemetry Visitor Count API
+  // Real Live Unique Visitor Telemetry (Increments only ONCE per browser session, read-only on reloads)
   useEffect(() => {
     let isMounted = true;
+    const SESSION_KEY = 'kd_session_visited_flag';
 
     const fetchRealVisitorCount = async () => {
+      const isAlreadyCountedThisSession = sessionStorage.getItem(SESSION_KEY);
+
       try {
-        const res = await fetch('https://api.counterapi.dev/v1/KRISHKUMAR1087_portfolio/visits/up');
-        if (res.ok) {
-          const json = await res.json();
-          if (json && typeof json.count === 'number' && isMounted) {
-            const totalCount = json.count + 1280;
-            setVisitorCount(totalCount);
-            localStorage.setItem('kd_portfolio_visitors', totalCount.toString());
-            return;
+        if (!isAlreadyCountedThisSession) {
+          // Fresh browser visit -> Increment count by 1
+          const res = await fetch('https://api.counterapi.dev/v1/krishkumar_f1_portfolio_unique/visits/up');
+          if (res.ok) {
+            const json = await res.json();
+            if (json && typeof json.count === 'number' && isMounted) {
+              setVisitorCount(json.count);
+              sessionStorage.setItem(SESSION_KEY, 'true');
+              localStorage.setItem('kd_portfolio_real_visits', json.count.toString());
+              return;
+            }
+          }
+        } else {
+          // Reload / tab navigation within same session -> READ ONLY without incrementing
+          const res = await fetch('https://api.counterapi.dev/v1/krishkumar_f1_portfolio_unique/visits');
+          if (res.ok) {
+            const json = await res.json();
+            if (json && typeof json.count === 'number' && isMounted) {
+              setVisitorCount(json.count);
+              localStorage.setItem('kd_portfolio_real_visits', json.count.toString());
+              return;
+            }
           }
         }
       } catch (err) {
-        // Fallback
+        // Offline / fallback handling
       }
 
       try {
-        const stored = localStorage.getItem('kd_portfolio_visitors');
-        const baseCount = 1486;
+        const stored = localStorage.getItem('kd_portfolio_real_visits');
         if (!stored) {
-          localStorage.setItem('kd_portfolio_visitors', (baseCount + 1).toString());
-          if (isMounted) setVisitorCount(baseCount + 1);
+          localStorage.setItem('kd_portfolio_real_visits', '1');
+          if (isMounted) setVisitorCount(1);
         } else {
           const count = parseInt(stored, 10);
-          const newCount = isNaN(count) ? baseCount + 1 : count + 1;
-          localStorage.setItem('kd_portfolio_visitors', newCount.toString());
-          if (isMounted) setVisitorCount(newCount);
+          if (isMounted) setVisitorCount(isNaN(count) ? 1 : count);
         }
       } catch (e) {
-        if (isMounted) setVisitorCount(1486);
+        if (isMounted) setVisitorCount(1);
       }
     };
 

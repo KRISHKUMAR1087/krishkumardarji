@@ -153,7 +153,7 @@ export const Hero = ({ data }) => {
               Building high-performance digital systems where engineering performance, AI workflows, and precision user experiences meet.
             </p>
 
-            {/* F1 Action Buttons with Sound FX */}
+            {/* F1 Action Buttons */}
             <div className="f1-hero-actions">
               <button 
                 onClick={() => scrollTo('projects')} 
@@ -161,15 +161,6 @@ export const Hero = ({ data }) => {
               >
                 <span>EXPLORE GARAGE</span>
                 <FiArrowDown size={17} />
-              </button>
-
-              <button
-                onClick={handleRevEngine}
-                className="f1-btn-racing-secondary f1-sound-btn"
-                title="Rev Engine (Sound Effect)"
-              >
-                <FiZap size={16} style={{ color: '#ffea00' }} />
-                <span>{hasRevved ? 'REVVED! 🏎️💨' : 'REV ENGINE 🔊'}</span>
               </button>
 
               <a
