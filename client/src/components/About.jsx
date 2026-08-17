@@ -30,7 +30,7 @@ export const About = ({ data }) => {
             <div className="f1-driver-card">
               <div className="f1-driver-card-header">
                 <span className="f1-driver-team-tag">KRISHKUMAR RACING</span>
-                <span className="f1-driver-car-num">#10</span>
+                <span className="f1-driver-car-num">#1</span>
               </div>
 
               <div className="f1-driver-id-box">

@@ -1,38 +1,38 @@
 /* ==========================================================================
    KRISHKUMAR RACING // F1 MOTORSPORT × SOFTWARE ENGINEERING THEME
-   Formula 1 × Software Engineering × Premium Engineering Dashboard
+   Formula 1 × Software Engineering × High Readability & Contrast
    ========================================================================== */
 
 :root {
-  /* F1 Primary Palette */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #121212;
-  --bg-card: rgba(22, 22, 22, 0.75);
-  --bg-card-hover: rgba(30, 30, 30, 0.9);
-  --bg-card-solid: #151515;
-  --bg-carbon: #181818;
+  /* F1 Primary Palette - Deep Asphalt & High Contrast */
+  --bg-primary: #080808;
+  --bg-secondary: #111317;
+  --bg-card: rgba(20, 23, 30, 0.88);
+  --bg-card-hover: rgba(28, 32, 42, 0.95);
+  --bg-card-solid: #151821;
+  --bg-carbon: #181b24;
 
   /* Motorsport Accents */
   --racing-red: #e10600;
-  --racing-red-glow: rgba(225, 6, 0, 0.25);
-  --telemetry-green: #00d26a;
-  --signal-yellow: #ffd000;
-  --off-white: #f4f1ea;
+  --racing-red-glow: rgba(225, 6, 0, 0.35);
+  --telemetry-green: #00e676;
+  --signal-yellow: #ffea00;
+  --off-white: #ffffff;
 
-  /* Borders & Grids */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.15);
-  --border-red: rgba(225, 6, 0, 0.4);
-  --border-green: rgba(0, 210, 106, 0.4);
+  /* Borders & Grids - Enhanced Clarity */
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-medium: rgba(255, 255, 255, 0.22);
+  --border-red: rgba(225, 6, 0, 0.5);
+  --border-green: rgba(0, 230, 118, 0.5);
 
-  /* Typography */
-  --text-primary: #f4f1ea;
-  --text-secondary: #a3a3a3;
-  --text-muted: #666666;
+  /* High Readability Typography Hierarchy */
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;  /* Slate 300 - High Contrast & Crisp */
+  --text-muted: #94a3b8;      /* Slate 400 - Clear & Legible */
   --accent-cyan: #00f0ff;
-  --accent-emerald: #00d26a;
-  --accent-amber: #ffd000;
-  --accent-violet: #a855f7;
+  --accent-emerald: #00e676;
+  --accent-amber: #ffea00;
+  --accent-violet: #c084fc;
 
   /* Fonts */
   --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -45,7 +45,7 @@
   --radius-lg: 16px;
   --radius-xl: 22px;
   --radius-full: 9999px;
-  --shadow-glow-cyan: 0 0 24px rgba(225, 6, 0, 0.15);
+  --shadow-glow-cyan: 0 0 24px rgba(225, 6, 0, 0.2);
 }
 
 * {
@@ -59,13 +59,16 @@ html {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-body);
+  font-size: 16px;
 }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
-  line-height: 1.6;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -75,32 +78,32 @@ body {
 }
 
 .section {
-  padding: 90px 0;
+  padding: 95px 0;
   position: relative;
 }
 
 /* ==========================================================================
-   F1 SECTION HEADERS
+   F1 SECTION HEADERS - CRISP & READABLE
    ========================================================================== */
 .section-header {
   text-align: center;
-  max-width: 720px;
-  margin: 0 auto 50px;
+  max-width: 760px;
+  margin: 0 auto 52px;
 }
 
 .f1-section-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 12px;
-  background: rgba(225, 6, 0, 0.08);
+  padding: 5px 14px;
+  background: rgba(225, 6, 0, 0.12);
   border: 1px solid var(--border-red);
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  font-weight: 750;
+  font-size: 0.8rem;
+  font-weight: 800;
   letter-spacing: 0.1em;
-  color: #f4f1ea;
+  color: #ffffff;
   text-transform: uppercase;
   margin-bottom: 14px;
 }
@@ -108,26 +111,26 @@ body {
 .f1-badge-red-block {
   background: var(--racing-red);
   color: #ffffff;
-  padding: 1px 6px;
+  padding: 2px 7px;
   border-radius: 3px;
   font-weight: 900;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
 }
 
 .section-header h2 {
-  font-size: clamp(1.85rem, 3.2vw, 2.4rem);
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
   font-weight: 850;
   letter-spacing: -0.02em;
-  margin-bottom: 10px;
-  color: var(--text-primary);
+  margin-bottom: 12px;
+  color: #ffffff;
   text-transform: uppercase;
 }
 
 .section-header p {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 580px;
+  line-height: 1.72;
+  max-width: 640px;
   margin: 0 auto;
 }
 
@@ -147,12 +150,12 @@ body {
 
 .f1-boot-container {
   width: 100%;
-  max-width: 600px;
-  background: #111111;
+  max-width: 620px;
+  background: #121418;
   border: 1px solid var(--border-red);
-  border-radius: 12px;
-  padding: 28px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(225, 6, 0, 0.2);
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(225, 6, 0, 0.25);
 }
 
 .f1-boot-badge {
@@ -160,19 +163,19 @@ body {
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-  color: var(--racing-red);
+  color: #ff3b30;
   margin-bottom: 18px;
 }
 
 .f1-boot-pulse {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--racing-red);
-  box-shadow: 0 0 8px var(--racing-red);
+  box-shadow: 0 0 10px var(--racing-red);
   animation: f1Pulse 1.2s infinite;
 }
 
@@ -184,17 +187,17 @@ body {
 .f1-boot-terminal {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   font-family: var(--font-mono);
-  font-size: 0.84rem;
-  color: var(--text-secondary);
-  margin-bottom: 22px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin-bottom: 24px;
   min-height: 140px;
 }
 
 .f1-boot-log.active {
-  color: #f4f1ea;
-  font-weight: 600;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .f1-log-prefix {
@@ -205,25 +208,25 @@ body {
 
 .f1-boot-progress-track {
   width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
+  height: 5px;
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 999px;
   overflow: hidden;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .f1-boot-progress-fill {
   height: 100%;
   background: var(--racing-red);
-  box-shadow: 0 0 10px var(--racing-red);
+  box-shadow: 0 0 12px var(--racing-red);
 }
 
 .f1-boot-footer-stats {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
+  font-size: 0.78rem;
+  color: #94a3b8;
   text-transform: uppercase;
 }
 
@@ -238,15 +241,15 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 14px;
-  background: rgba(18, 18, 18, 0.88);
-  border: 1px solid rgba(0, 210, 106, 0.35);
+  padding: 8px 16px;
+  background: rgba(18, 20, 26, 0.92);
+  border: 1px solid rgba(0, 230, 118, 0.45);
   border-radius: var(--radius-sm);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  color: var(--text-primary);
+  font-size: 0.8rem;
+  color: #ffffff;
   user-select: none;
 }
 
@@ -258,16 +261,16 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 14px;
-  background: rgba(18, 18, 18, 0.88);
+  padding: 8px 16px;
+  background: rgba(18, 20, 26, 0.92);
   border: 1px solid var(--border-red);
   border-radius: var(--radius-sm);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  font-weight: 750;
-  color: #f4f1ea;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #ffffff;
   text-decoration: none;
   transition: all 0.2s ease;
 }
@@ -280,21 +283,21 @@ body {
 
 .f1-nav-link {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 750;
   letter-spacing: 0.06em;
-  color: #888888;
+  color: #cbd5e1;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 5px 10px;
   border-radius: 4px;
   transition: all 0.2s ease;
 }
 
 .f1-nav-link:hover, .f1-nav-link.active {
   color: #ffffff;
-  background: rgba(225, 6, 0, 0.2);
+  background: rgba(225, 6, 0, 0.3);
 }
 
 /* ==========================================================================
@@ -305,7 +308,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 20px 60px;
+  padding: 110px 20px 65px;
   position: relative;
   overflow: hidden;
 }
@@ -313,9 +316,9 @@ body {
 .f1-hero-track-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 60% 30%, rgba(225, 6, 0, 0.06) 0%, transparent 60%),
-              radial-gradient(circle at 20% 80%, rgba(0, 210, 106, 0.04) 0%, transparent 50%),
-              #0a0a0a;
+  background: radial-gradient(circle at 60% 30%, rgba(225, 6, 0, 0.08) 0%, transparent 65%),
+              radial-gradient(circle at 20% 80%, rgba(0, 230, 118, 0.06) 0%, transparent 55%),
+              #080808;
   z-index: 1;
 }
 
@@ -329,19 +332,69 @@ body {
 .f1-trackside-ticker-wrap {
   width: 100%;
   overflow: hidden;
-  background: rgba(20, 20, 20, 0.8);
-  border: 1px solid var(--border-subtle);
+  background: rgba(20, 23, 30, 0.85);
+  border: 1px solid var(--border-medium);
   border-radius: var(--radius-sm);
-  padding: 8px 14px;
-  margin-bottom: 40px;
+  padding: 10px 16px;
+  margin-bottom: 24px;
   mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+/* F1 Animated Car Track Flyby */
+.f1-car-flyby-track {
+  width: 100%;
+  height: 54px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: linear-gradient(180deg, rgba(20, 23, 30, 0.4) 0%, rgba(10, 10, 10, 0.8) 100%);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  border-bottom: 1.5px solid var(--border-red);
+  cursor: pointer;
+}
+
+.f1-car-machine {
+  position: absolute;
+  top: 6px;
+  width: 130px;
+  height: 38px;
+  will-change: transform;
+}
+
+.f1-car-silhouette-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.f1-car-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 10px rgba(225, 6, 0, 0.5));
+}
+
+.f1-car-exhaust-flame {
+  position: absolute;
+  left: -8px;
+  top: 18px;
+  width: 14px;
+  height: 5px;
+  background: radial-gradient(circle, #ffea00 0%, #e10600 60%, transparent 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ffea00, 0 0 14px #e10600;
+  animation: f1FlameFlicker 0.15s infinite alternate;
+}
+
+@keyframes f1FlameFlicker {
+  0% { transform: scaleX(0.8) scaleY(0.8); opacity: 0.7; }
+  100% { transform: scaleX(1.4) scaleY(1.2); opacity: 1; }
 }
 
 .f1-trackside-ticker {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 32px;
   width: max-content;
   animation: rollF1Ticker 26s linear infinite;
 }
@@ -356,10 +409,10 @@ body {
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 750;
+  font-size: 0.82rem;
+  font-weight: 800;
   letter-spacing: 0.08em;
-  color: var(--text-secondary);
+  color: #e2e8f0;
 }
 
 .f1-ticker-flag {
@@ -369,7 +422,7 @@ body {
 .f1-hero-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: 40px;
+  gap: 44px;
   align-items: center;
 }
 
@@ -377,34 +430,34 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-subtle);
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-medium);
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 750;
+  color: #f1f5f9;
   letter-spacing: 0.06em;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .f1-live-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--racing-red);
-  box-shadow: 0 0 6px var(--racing-red);
+  box-shadow: 0 0 8px var(--racing-red);
 }
 
 .f1-hero-name {
-  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  font-size: clamp(2.8rem, 5.8vw, 4.6rem);
   font-weight: 900;
-  line-height: 1.02;
+  line-height: 1.04;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  color: #f4f1ea;
-  margin-bottom: 16px;
+  color: #ffffff;
+  margin-bottom: 18px;
 }
 
 .f1-hero-name-highlight {
@@ -413,17 +466,17 @@ body {
 
 .f1-hero-telemetry-role {
   font-family: var(--font-mono);
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  font-weight: 700;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 800;
   color: var(--signal-yellow);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .f1-telemetry-prefix {
-  color: var(--text-muted);
+  color: #94a3b8;
 }
 
 .f1-cursor-blink {
@@ -436,17 +489,17 @@ body {
 }
 
 .f1-hero-manifesto {
-  font-size: 1.02rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  max-width: 540px;
-  margin-bottom: 30px;
+  font-size: 1.08rem;
+  color: #cbd5e1;
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 34px;
 }
 
 .f1-hero-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
@@ -454,13 +507,13 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 24px;
+  padding: 13px 26px;
   background: var(--racing-red);
   border: 1px solid var(--racing-red);
   color: #ffffff;
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-size: 0.85rem;
+  font-weight: 850;
   letter-spacing: 0.06em;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -477,13 +530,13 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 22px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-subtle);
-  color: #f4f1ea;
+  padding: 13px 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-medium);
+  color: #ffffff;
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 750;
+  font-size: 0.85rem;
+  font-weight: 800;
   letter-spacing: 0.06em;
   border-radius: var(--radius-sm);
   text-decoration: none;
@@ -492,8 +545,8 @@ body {
 }
 
 .f1-btn-racing-secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: #f4f1ea;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: #ffffff;
   transform: translateY(-2px);
 }
 
@@ -504,10 +557,10 @@ body {
   padding: 12px 18px;
   background: transparent;
   border: 1px solid transparent;
-  color: var(--text-muted);
+  color: #94a3b8;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 750;
   cursor: pointer;
   transition: color 0.2s ease;
 }
@@ -518,10 +571,10 @@ body {
 
 /* F1 Telemetry Console Card */
 .f1-telemetry-console-card {
-  background: #121212;
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7);
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 14px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8);
   overflow: hidden;
   position: relative;
 }
@@ -530,98 +583,98 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
-  background: #181818;
+  padding: 16px 20px;
+  background: #1a1e28;
   border-bottom: 1px solid var(--border-subtle);
 }
 
 .f1-telemetry-status-light {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--telemetry-green);
-  box-shadow: 0 0 8px var(--telemetry-green);
+  box-shadow: 0 0 10px var(--telemetry-green);
 }
 
 .f1-telemetry-title {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 800;
+  font-size: 0.84rem;
+  font-weight: 850;
   letter-spacing: 0.08em;
-  color: #f4f1ea;
+  color: #ffffff;
 }
 
 .f1-telemetry-unit {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: #94a3b8;
 }
 
 .f1-telemetry-rows {
-  padding: 16px 18px;
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .f1-telemetry-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
   padding-bottom: 10px;
 }
 
 .f1-telemetry-label {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  color: var(--text-secondary);
+  font-size: 0.8rem;
+  color: #cbd5e1;
   letter-spacing: 0.04em;
 }
 
 .f1-telemetry-value {
   font-family: var(--font-mono);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #f4f1ea;
+  font-size: 1.15rem;
+  font-weight: 850;
+  color: #ffffff;
 }
 
 .f1-telemetry-active-badge {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  font-weight: 800;
+  font-size: 0.8rem;
+  font-weight: 850;
   color: var(--telemetry-green);
-  background: rgba(0, 210, 106, 0.1);
-  padding: 2px 8px;
+  background: rgba(0, 230, 118, 0.12);
+  padding: 3px 10px;
   border-radius: 4px;
-  border: 1px solid rgba(0, 210, 106, 0.25);
+  border: 1px solid rgba(0, 230, 118, 0.35);
 }
 
 .f1-telemetry-footer-bar {
   display: flex;
   justify-content: space-between;
-  padding: 10px 18px;
-  background: #0f0f0f;
+  padding: 12px 20px;
+  background: #0f1117;
   border-top: 1px solid var(--border-subtle);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: #94a3b8;
 }
 
 /* ==========================================================================
-   F1 DRIVER PROFILE SECTION (ABOUT)
+   F1 DRIVER PROFILE SECTION (ABOUT) - READABLE & BALANCED
    ========================================================================== */
 .f1-driver-profile-grid {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
-  gap: 28px;
+  gap: 32px;
 }
 
 .f1-driver-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  padding: 26px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -636,24 +689,24 @@ body {
 
 .f1-driver-team-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.76rem;
+  font-weight: 850;
   color: var(--racing-red);
   letter-spacing: 0.1em;
 }
 
 .f1-driver-car-num {
   font-family: var(--font-mono);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 900;
-  color: #444444;
+  color: #64748b;
 }
 
 .f1-driver-fullname {
-  font-size: 1.8rem;
+  font-size: 1.95rem;
   font-weight: 900;
   text-transform: uppercase;
-  color: #f4f1ea;
+  color: #ffffff;
   margin-bottom: 4px;
 }
 
@@ -662,20 +715,20 @@ body {
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-bottom: 22px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 24px;
 }
 
 .f1-driver-stats-strip {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  background: #0c0c0c;
-  padding: 12px;
+  gap: 12px;
+  background: #0d0f14;
+  padding: 14px;
   border-radius: 8px;
   border: 1px solid var(--border-subtle);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 .f1-driver-stat-col {
@@ -685,85 +738,85 @@ body {
 
 .f1-stat-caption {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-muted);
+  font-size: 0.7rem;
+  color: #94a3b8;
 }
 
 .f1-stat-data {
   font-family: var(--font-mono);
-  font-size: 0.84rem;
-  font-weight: 700;
-  color: #f4f1ea;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #ffffff;
   margin-top: 2px;
 }
 
 .f1-philosophy-card-inner {
   border-top: 1px solid var(--border-subtle);
-  padding-top: 18px;
+  padding-top: 20px;
 }
 
 .f1-philosophy-headline {
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 1.08rem;
   font-weight: 850;
   letter-spacing: 0.04em;
-  color: #f4f1ea;
-  margin-bottom: 8px;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
 
 .f1-philosophy-quote {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: #cbd5e1;
 }
 
 .f1-engineer-log-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  padding: 26px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  padding: 28px;
 }
 
 .f1-log-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .f1-log-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.76rem;
+  font-weight: 850;
   color: var(--signal-yellow);
   letter-spacing: 0.08em;
 }
 
 .f1-log-timestamp {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: #94a3b8;
 }
 
 .f1-engineer-heading {
-  font-size: 1.3rem;
-  font-weight: 800;
+  font-size: 1.35rem;
+  font-weight: 850;
   margin-bottom: 12px;
-  color: #f4f1ea;
+  color: #ffffff;
 }
 
 .f1-engineer-intro {
-  font-size: 0.94rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.76;
+  color: #cbd5e1;
   margin-bottom: 24px;
 }
 
 .f1-spec-list-title {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+  color: #94a3b8;
   letter-spacing: 0.08em;
   margin-bottom: 12px;
 }
@@ -777,17 +830,17 @@ body {
 .f1-spec-row {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 10px 12px;
-  background: #0e0e0e;
+  gap: 14px;
+  padding: 12px 14px;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
 }
 
 .f1-spec-num {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 800;
+  font-size: 0.85rem;
+  font-weight: 850;
   color: var(--racing-red);
 }
 
@@ -797,16 +850,16 @@ body {
 }
 
 .f1-spec-name {
-  font-size: 0.88rem;
-  font-weight: 750;
-  color: #f4f1ea;
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .f1-spec-tech {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  margin-top: 2px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 3px;
 }
 
 /* ==========================================================================
@@ -817,44 +870,44 @@ body {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 28px;
 }
 
 .f1-subsystem-btn {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 14px;
-  background: #141414;
-  border: 1px solid var(--border-subtle);
+  padding: 9px 16px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
   border-radius: var(--radius-sm);
-  color: var(--text-secondary);
+  color: #cbd5e1;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 750;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .f1-subsystem-btn:hover, .f1-subsystem-btn.active {
-  background: #1f1f1f;
+  background: #1e2330;
   border-color: var(--racing-red);
-  color: #f4f1ea;
+  color: #ffffff;
   box-shadow: 0 4px 16px var(--racing-red-glow);
 }
 
 .f1-subsystem-btn-tag {
-  font-size: 0.65rem;
-  color: var(--text-muted);
+  font-size: 0.7rem;
+  color: #94a3b8;
 }
 
 .f1-machine-spec-card {
-  background: #131313;
-  border: 1px solid var(--border-subtle);
+  background: #141720;
+  border: 1px solid var(--border-medium);
   border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
 }
 
 .f1-spec-card-header {
@@ -862,61 +915,62 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 18px;
-  margin-bottom: 22px;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
 }
 
 .f1-spec-badge-pill {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 800;
-  padding: 2px 8px;
+  font-size: 0.74rem;
+  font-weight: 850;
+  padding: 3px 10px;
   border-radius: 4px;
   border: 1px solid currentColor;
 }
 
 .f1-spec-title {
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 850;
-  color: #f4f1ea;
+  color: #ffffff;
 }
 
 .f1-spec-desc {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  max-width: 600px;
+  font-size: 0.94rem;
+  color: #cbd5e1;
+  max-width: 640px;
+  margin-top: 4px;
 }
 
 .f1-spec-status-tag {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
-  font-weight: 750;
+  font-size: 0.78rem;
+  font-weight: 800;
   color: var(--telemetry-green);
-  background: rgba(0, 210, 106, 0.08);
-  border: 1px solid rgba(0, 210, 106, 0.25);
-  padding: 4px 10px;
+  background: rgba(0, 230, 118, 0.12);
+  border: 1px solid rgba(0, 230, 118, 0.35);
+  padding: 5px 12px;
   border-radius: 4px;
 }
 
 .f1-spec-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
 }
 
 .f1-spec-item-box {
-  background: #0c0c0c;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
-  padding: 16px;
+  padding: 18px;
   transition: all 0.2s ease;
 }
 
 .f1-spec-item-box:hover {
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.35);
   transform: translateY(-2px);
 }
 
@@ -924,46 +978,46 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .f1-spec-level-tag {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  background: #1a1a1a;
-  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: 750;
+  color: #cbd5e1;
+  background: #1a1e28;
+  padding: 2px 8px;
   border-radius: 3px;
 }
 
 .f1-spec-name {
-  font-size: 1rem;
-  font-weight: 750;
-  color: #f4f1ea;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
   margin-bottom: 4px;
 }
 
 .f1-spec-subdesc {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
+  font-size: 0.84rem;
+  color: #cbd5e1;
+  line-height: 1.5;
 }
 
 /* ==========================================================================
-   F1 GARAGE (PROJECTS)
+   F1 GARAGE (PROJECTS) - READABLE CARDS
    ========================================================================== */
 .f1-garage-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 26px;
 }
 
 .f1-garage-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  padding: 24px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -986,8 +1040,8 @@ body {
 
 .f1-garage-card:hover {
   border-color: var(--border-red);
-  transform: translateY(-3px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 20px var(--racing-red-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 20px var(--racing-red-glow);
 }
 
 .f1-garage-card:hover::before {
@@ -998,92 +1052,93 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .f1-car-num-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.76rem;
+  font-weight: 850;
   color: var(--racing-red);
-  background: rgba(225, 6, 0, 0.1);
+  background: rgba(225, 6, 0, 0.12);
   border: 1px solid var(--border-red);
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 4px;
 }
 
 .f1-car-status-tag {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 750;
+  font-size: 0.74rem;
+  font-weight: 800;
   color: var(--telemetry-green);
 }
 
 .f1-car-category {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  font-size: 0.74rem;
+  color: #94a3b8;
   margin-bottom: 4px;
 }
 
 .f1-car-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #f4f1ea;
+  font-size: 1.35rem;
+  font-weight: 850;
+  color: #ffffff;
   margin-bottom: 4px;
 }
 
 .f1-car-subtitle {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   color: var(--signal-yellow);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .f1-car-powertrain-box {
-  background: #0a0a0a;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
   border-radius: 6px;
-  padding: 8px 10px;
-  margin-bottom: 12px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
 }
 
 .f1-powertrain-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-muted);
+  font-size: 0.68rem;
+  color: #94a3b8;
   display: block;
   margin-bottom: 2px;
 }
 
 .f1-powertrain-text {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: #f4f1ea;
+  font-size: 0.78rem;
+  font-weight: 750;
+  color: #ffffff;
 }
 
 .f1-car-desc {
-  font-size: 0.86rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 16px;
+  font-size: 0.92rem;
+  line-height: 1.68;
+  color: #cbd5e1;
+  margin-bottom: 18px;
 }
 
 .f1-car-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .f1-car-chip {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: #bbbbbb;
-  background: #1c1c1c;
-  padding: 2px 7px;
+  font-size: 0.74rem;
+  color: #e2e8f0;
+  background: #1e2330;
+  border: 1px solid var(--border-subtle);
+  padding: 3px 8px;
   border-radius: 4px;
 }
 
@@ -1092,19 +1147,19 @@ body {
   align-items: center;
   gap: 10px;
   border-top: 1px solid var(--border-subtle);
-  padding-top: 14px;
+  padding-top: 16px;
 }
 
 .f1-car-btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 14px;
+  padding: 8px 16px;
   background: var(--racing-red);
   color: #ffffff;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  font-weight: 800;
+  font-size: 0.8rem;
+  font-weight: 850;
   text-decoration: none;
   border-radius: 4px;
 }
@@ -1113,42 +1168,42 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 14px;
-  background: #1c1c1c;
-  color: var(--text-secondary);
+  padding: 8px 16px;
+  background: #1e2330;
+  color: #cbd5e1;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 800;
   text-decoration: none;
   border-radius: 4px;
   transition: all 0.2s ease;
 }
 
 .f1-car-btn-secondary:hover {
-  background: #252525;
-  color: #f4f1ea;
+  background: #282f40;
+  color: #ffffff;
 }
 
 /* ==========================================================================
    F1 RACE WEEKEND (HACKATHONS)
    ========================================================================== */
 .f1-season-standings-box {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin-bottom: 24px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 26px;
 }
 
 .f1-standings-header {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 850;
+  color: #cbd5e1;
   letter-spacing: 0.08em;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .f1-standings-pills {
@@ -1159,21 +1214,21 @@ body {
 
 .f1-standing-pill {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  background: #0c0c0c;
+  font-size: 0.8rem;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
-  padding: 6px 12px;
+  padding: 7px 14px;
   border-radius: 6px;
-  color: var(--text-secondary);
+  color: #cbd5e1;
 }
 
 .f1-standing-pill strong {
-  color: #f4f1ea;
+  color: #ffffff;
 }
 
 .f1-standing-pill.podium {
-  border-color: rgba(255, 208, 0, 0.4);
-  background: rgba(255, 208, 0, 0.08);
+  border-color: rgba(255, 234, 0, 0.5);
+  background: rgba(255, 234, 0, 0.1);
 }
 
 .f1-standing-pill.podium strong {
@@ -1181,8 +1236,8 @@ body {
 }
 
 .f1-standing-pill.top20 {
-  border-color: rgba(0, 210, 106, 0.4);
-  background: rgba(0, 210, 106, 0.08);
+  border-color: rgba(0, 230, 118, 0.5);
+  background: rgba(0, 230, 118, 0.1);
 }
 
 .f1-standing-pill.top20 strong {
@@ -1191,19 +1246,19 @@ body {
 
 .f1-race-filter-bar {
   display: flex;
-  gap: 8px;
-  margin-bottom: 22px;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
 .f1-filter-btn {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
-  font-weight: 750;
-  padding: 6px 14px;
-  background: #141414;
-  border: 1px solid var(--border-subtle);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 7px 16px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
   border-radius: 4px;
-  color: var(--text-muted);
+  color: #94a3b8;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -1217,14 +1272,14 @@ body {
 .f1-race-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 22px;
 }
 
 .f1-race-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 20px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 14px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1232,85 +1287,85 @@ body {
 }
 
 .f1-race-card:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-3px);
 }
 
 .f1-race-card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .f1-race-rank-badge {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 2px 8px;
+  font-size: 0.76rem;
+  font-weight: 850;
+  padding: 3px 10px;
   border-radius: 4px;
 }
 
 .f1-race-rank-badge.winner {
-  background: rgba(255, 208, 0, 0.15);
+  background: rgba(255, 234, 0, 0.18);
   color: var(--signal-yellow);
-  border: 1px solid rgba(255, 208, 0, 0.35);
+  border: 1px solid rgba(255, 234, 0, 0.45);
 }
 
 .f1-race-rank-badge.selected {
-  background: rgba(0, 240, 255, 0.12);
+  background: rgba(0, 240, 255, 0.15);
   color: var(--accent-cyan);
-  border: 1px solid rgba(0, 240, 255, 0.35);
+  border: 1px solid rgba(0, 240, 255, 0.45);
 }
 
 .f1-race-rank-badge.completed {
-  background: rgba(0, 210, 106, 0.1);
+  background: rgba(0, 230, 118, 0.14);
   color: var(--telemetry-green);
-  border: 1px solid rgba(0, 210, 106, 0.3);
+  border: 1px solid rgba(0, 230, 118, 0.4);
 }
 
 .f1-race-date {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
+  font-size: 0.76rem;
+  color: #94a3b8;
 }
 
 .f1-race-title {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #f4f1ea;
-  margin-bottom: 2px;
+  font-size: 1.15rem;
+  font-weight: 850;
+  color: #ffffff;
+  margin-bottom: 4px;
 }
 
 .f1-race-org {
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  margin-bottom: 10px;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-bottom: 12px;
 }
 
 .f1-race-project-box {
-  background: #0a0a0a;
-  padding: 6px 8px;
+  background: #0d0f14;
+  padding: 8px 10px;
   border-radius: 4px;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  margin-bottom: 10px;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
 }
 
 .f1-race-proj-lbl {
-  color: var(--text-muted);
+  color: #94a3b8;
   margin-right: 6px;
 }
 
 .f1-race-proj-val {
-  color: #f4f1ea;
+  color: #ffffff;
 }
 
 .f1-race-desc {
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  margin-bottom: 14px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-bottom: 16px;
 }
 
 .f1-race-footer {
@@ -1318,19 +1373,19 @@ body {
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid var(--border-subtle);
-  padding-top: 10px;
+  padding-top: 12px;
 }
 
 .f1-race-role {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  font-size: 0.74rem;
+  color: #94a3b8;
 }
 
 .f1-race-link {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.76rem;
+  font-weight: 800;
   color: var(--racing-red);
   text-decoration: none;
   display: inline-flex;
@@ -1344,117 +1399,117 @@ body {
 .f1-season-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 24px;
+  gap: 26px;
 }
 
 .f1-career-main-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  padding: 26px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  padding: 28px;
 }
 
 .f1-career-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 16px;
 }
 
 .f1-season-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.76rem;
+  font-weight: 850;
   color: var(--racing-red);
   letter-spacing: 0.08em;
 }
 
 .f1-career-institution {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #f4f1ea;
+  font-size: 1.35rem;
+  font-weight: 850;
+  color: #ffffff;
   margin-top: 4px;
 }
 
 .f1-career-univ {
-  font-size: 0.86rem;
-  color: var(--text-secondary);
+  font-size: 0.92rem;
+  color: #cbd5e1;
 }
 
 .f1-career-degree {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   color: var(--signal-yellow);
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .f1-pace-card {
-  background: #0c0c0c;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
-  padding: 12px 18px;
+  padding: 14px 20px;
   border-radius: 8px;
   text-align: right;
 }
 
 .f1-pace-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-muted);
+  font-size: 0.7rem;
+  color: #94a3b8;
   display: block;
 }
 
 .f1-pace-val {
   font-family: var(--font-mono);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 900;
   color: var(--telemetry-green);
   display: block;
 }
 
 .f1-pace-sub {
-  font-size: 0.72rem;
-  color: var(--text-muted);
+  font-size: 0.76rem;
+  color: #94a3b8;
 }
 
 .f1-lap-telemetry-box {
-  background: #0c0c0c;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
-  padding: 18px;
+  padding: 20px;
 }
 
 .f1-lap-telemetry-header {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+  color: #94a3b8;
   letter-spacing: 0.06em;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .f1-lap-bars {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .f1-lap-info {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  color: #f4f1ea;
-  margin-bottom: 4px;
+  font-size: 0.82rem;
+  color: #ffffff;
+  margin-bottom: 5px;
 }
 
 .f1-lap-track {
   width: 100%;
-  height: 6px;
-  background: #1c1c1c;
+  height: 7px;
+  background: #1e2330;
   border-radius: 999px;
   overflow: hidden;
 }
@@ -1465,10 +1520,10 @@ body {
 }
 
 .f1-rookie-records-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  padding: 24px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1476,55 +1531,55 @@ body {
 
 .f1-rookie-header {
   border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 12px;
-  margin-bottom: 16px;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
 }
 
 .f1-rookie-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.76rem;
+  font-weight: 850;
   color: var(--signal-yellow);
   letter-spacing: 0.08em;
   display: block;
 }
 
 .f1-rookie-school {
-  font-size: 0.78rem;
-  color: var(--text-muted);
+  font-size: 0.84rem;
+  color: #94a3b8;
 }
 
 .f1-rookie-items {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .f1-rookie-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #0c0c0c;
-  padding: 12px;
+  background: #0d0f14;
+  padding: 14px;
   border-radius: 8px;
   border: 1px solid var(--border-subtle);
 }
 
 .f1-rookie-exam {
-  font-size: 0.84rem;
-  font-weight: 750;
-  color: #f4f1ea;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .f1-rookie-year {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  font-size: 0.74rem;
+  color: #94a3b8;
 }
 
 .f1-rookie-score {
   font-family: var(--font-mono);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 900;
   color: var(--telemetry-green);
   display: block;
@@ -1533,7 +1588,7 @@ body {
 
 .f1-rookie-badge {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   color: var(--signal-yellow);
   display: block;
   text-align: right;
@@ -1545,14 +1600,14 @@ body {
 .f1-podium-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 22px;
 }
 
 .f1-podium-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 20px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 14px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1560,62 +1615,62 @@ body {
 }
 
 .f1-podium-card:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-3px);
 }
 
 .f1-podium-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .f1-podium-position {
   font-family: var(--font-mono);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 900;
 }
 
 .f1-podium-type-tag {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: var(--text-muted);
-  background: #0c0c0c;
-  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: 850;
+  color: #94a3b8;
+  background: #0d0f14;
+  padding: 3px 8px;
   border-radius: 3px;
 }
 
 .f1-podium-title {
-  font-size: 1rem;
-  font-weight: 800;
-  color: #f4f1ea;
+  font-size: 1.1rem;
+  font-weight: 850;
+  color: #ffffff;
   margin-bottom: 4px;
 }
 
 .f1-podium-event {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-bottom: 10px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 12px;
 }
 
 .f1-podium-desc {
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-bottom: 14px;
 }
 
 .f1-podium-footer {
   border-top: 1px solid var(--border-subtle);
-  padding-top: 8px;
+  padding-top: 10px;
 }
 
 .f1-podium-date {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: #94a3b8;
 }
 
 /* ==========================================================================
@@ -1624,14 +1679,14 @@ body {
 .f1-licenses-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 18px;
 }
 
 .f1-license-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 10px;
-  padding: 16px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 12px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1639,86 +1694,86 @@ body {
 }
 
 .f1-license-card:hover {
-  border-color: rgba(225, 6, 0, 0.4);
-  transform: translateY(-2px);
+  border-color: var(--border-red);
+  transform: translateY(-3px);
 }
 
 .f1-license-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .f1-license-provider {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.78rem;
+  font-weight: 850;
   color: var(--racing-red);
 }
 
 .f1-license-badge {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 800;
   color: var(--signal-yellow);
-  background: rgba(255, 208, 0, 0.1);
-  padding: 1px 5px;
+  background: rgba(255, 234, 0, 0.12);
+  padding: 2px 7px;
   border-radius: 3px;
 }
 
 .f1-license-title {
-  font-size: 0.92rem;
-  font-weight: 750;
-  color: #f4f1ea;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #ffffff;
   margin-bottom: 4px;
 }
 
 .f1-license-date {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin-bottom: 8px;
+  font-size: 0.74rem;
+  color: #94a3b8;
+  margin-bottom: 10px;
 }
 
 .f1-license-score-strip {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  background: #0a0a0a;
-  padding: 4px 6px;
+  font-size: 0.76rem;
+  background: #0d0f14;
+  padding: 5px 8px;
   border-radius: 4px;
-  margin-bottom: 8px;
-  color: var(--text-secondary);
+  margin-bottom: 10px;
+  color: #cbd5e1;
 }
 
 .f1-license-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 12px;
+  gap: 5px;
+  margin-bottom: 14px;
 }
 
 .f1-license-tag-pill {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  background: #1c1c1c;
-  color: #aaaaaa;
-  padding: 1px 5px;
+  font-size: 0.7rem;
+  background: #1e2330;
+  color: #cbd5e1;
+  padding: 2px 7px;
   border-radius: 3px;
 }
 
 .f1-license-footer {
   border-top: 1px solid var(--border-subtle);
-  padding-top: 8px;
+  padding-top: 10px;
 }
 
 .f1-license-link {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 750;
-  color: #f4f1ea;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #ffffff;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -1727,7 +1782,7 @@ body {
 
 .f1-license-verified-text {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   color: var(--telemetry-green);
 }
 
@@ -1737,14 +1792,14 @@ body {
 .f1-offtrack-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 22px;
 }
 
 .f1-offtrack-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 22px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 14px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
 }
@@ -1752,14 +1807,14 @@ body {
 .f1-offtrack-top {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
 .f1-offtrack-icon-box {
-  width: 42px;
-  height: 42px;
-  background: #0a0a0a;
+  width: 44px;
+  height: 44px;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   display: flex;
@@ -1770,22 +1825,22 @@ body {
 
 .f1-offtrack-cat {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 750;
+  font-size: 0.72rem;
+  font-weight: 800;
   color: var(--signal-yellow);
 }
 
 .f1-offtrack-title {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 850;
-  color: #f4f1ea;
+  color: #ffffff;
   margin-bottom: 8px;
 }
 
 .f1-offtrack-desc {
-  font-size: 0.84rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.68;
+  color: #cbd5e1;
 }
 
 /* ==========================================================================
@@ -1794,45 +1849,45 @@ body {
 .f1-telemetry-stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 18px;
+  margin-bottom: 26px;
 }
 
 .f1-telemetry-stat-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 10px;
-  padding: 16px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 12px;
+  padding: 18px;
 }
 
 .f1-telemetry-stat-val {
   font-family: var(--font-mono);
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 900;
   margin-bottom: 2px;
 }
 
 .f1-telemetry-stat-lbl {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
+  font-size: 0.76rem;
+  color: #94a3b8;
 }
 
 .f1-contribution-graph-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  padding: 22px;
-  margin-bottom: 24px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 26px;
 }
 
 .f1-graph-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
 }
 
 .f1-gh-profile-btn {
@@ -1840,26 +1895,26 @@ body {
   align-items: center;
   gap: 6px;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-secondary);
+  font-size: 0.8rem;
+  color: #cbd5e1;
   text-decoration: none;
-  background: #0a0a0a;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 4px;
 }
 
 .f1-telemetry-feed-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 24px;
+  gap: 26px;
 }
 
 .f1-feed-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 20px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 14px;
+  padding: 22px;
 }
 
 .f1-feed-header {
@@ -1867,22 +1922,22 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 12px;
-  margin-bottom: 14px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .f1-feed-badge {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: var(--telemetry-green);
-  background: rgba(0, 210, 106, 0.1);
-  padding: 2px 6px;
+  background: rgba(0, 230, 118, 0.12);
+  padding: 2px 7px;
   border-radius: 3px;
 }
 
 .f1-view-all-link {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   color: var(--racing-red);
   text-decoration: none;
   display: inline-flex;
@@ -1893,15 +1948,15 @@ body {
 .f1-commits-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .f1-commit-row {
   display: block;
-  background: #0c0c0c;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 12px 14px;
   text-decoration: none;
   transition: all 0.2s ease;
 }
@@ -1920,47 +1975,47 @@ body {
 
 .f1-commit-repo {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: #f4f1ea;
+  font-size: 0.86rem;
+  color: #ffffff;
 }
 
 .f1-commit-time {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: #94a3b8;
 }
 
 .f1-commit-msg {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
+  font-size: 0.86rem;
+  color: #cbd5e1;
+  line-height: 1.5;
   margin-bottom: 4px;
 }
 
 .f1-commit-hash {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: var(--racing-red);
 }
 
 .f1-repos-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .f1-repo-card {
   display: block;
-  background: #0c0c0c;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  padding: 12px;
+  padding: 14px;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .f1-repo-card:hover {
-  border-color: rgba(255, 208, 0, 0.4);
+  border-color: rgba(255, 234, 0, 0.5);
   transform: translateY(-2px);
 }
 
@@ -1973,8 +2028,8 @@ body {
 
 .f1-repo-name {
   font-family: var(--font-mono);
-  font-size: 0.88rem;
-  color: #f4f1ea;
+  font-size: 0.94rem;
+  color: #ffffff;
 }
 
 .f1-repo-stars {
@@ -1982,15 +2037,15 @@ body {
   align-items: center;
   gap: 4px;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   color: var(--signal-yellow);
 }
 
 .f1-repo-desc {
-  font-size: 0.76rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-  margin-bottom: 6px;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin-bottom: 8px;
 }
 
 .f1-repo-meta {
@@ -1998,8 +2053,8 @@ body {
   align-items: center;
   gap: 6px;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: #94a3b8;
 }
 
 .f1-repo-dot {
@@ -2013,47 +2068,47 @@ body {
    F1 PIT WALL TRANSMISSION (CONTACT)
    ========================================================================== */
 .f1-pitwall-card {
-  background: #141414;
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
-  padding: 36px;
-  margin-bottom: 40px;
+  background: #141720;
+  border: 1px solid var(--border-medium);
+  border-radius: 18px;
+  padding: 38px;
+  margin-bottom: 44px;
 }
 
 .f1-pitwall-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 36px;
+  gap: 40px;
   align-items: start;
 }
 
 .f1-pitwall-title {
-  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  font-size: clamp(1.9rem, 3.2vw, 2.4rem);
   font-weight: 850;
   text-transform: uppercase;
-  color: #f4f1ea;
-  margin-bottom: 10px;
+  color: #ffffff;
+  margin-bottom: 12px;
 }
 
 .f1-pitwall-desc {
-  font-size: 0.94rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 22px;
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.72;
+  margin-bottom: 24px;
 }
 
 .f1-comms-frequency-box {
-  background: #0a0a0a;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  padding: 12px 14px;
-  margin-bottom: 20px;
+  padding: 14px 16px;
+  margin-bottom: 22px;
 }
 
 .f1-frequency-tag {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 800;
+  font-size: 0.72rem;
+  font-weight: 850;
   color: var(--racing-red);
   display: block;
   margin-bottom: 4px;
@@ -2068,49 +2123,49 @@ body {
 
 .f1-frequency-email {
   font-family: var(--font-mono);
-  font-size: 0.88rem;
-  color: #f4f1ea;
-  font-weight: 700;
+  font-size: 0.92rem;
+  color: #ffffff;
+  font-weight: 800;
 }
 
 .f1-copy-freq-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 4px 8px;
-  background: #1c1c1c;
+  font-size: 0.76rem;
+  font-weight: 850;
+  padding: 5px 10px;
+  background: #1e2330;
   border: 1px solid var(--border-subtle);
-  color: #f4f1ea;
+  color: #ffffff;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .f1-social-links-title {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+  color: #94a3b8;
   letter-spacing: 0.08em;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .f1-social-links-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 10px;
 }
 
 .f1-social-channel-btn {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #0c0c0c;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
   border-radius: 6px;
-  padding: 8px 12px;
+  padding: 10px 14px;
   text-decoration: none;
   transition: all 0.2s ease;
 }
@@ -2121,10 +2176,10 @@ body {
 }
 
 .f1-pitwall-form-console {
-  background: #0c0c0c;
+  background: #0d0f14;
   border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 24px;
+  border-radius: 14px;
+  padding: 26px;
 }
 
 .f1-form-console-header {
@@ -2132,41 +2187,41 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 12px;
-  margin-bottom: 18px;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
 }
 
 .f1-form-console-status {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   color: var(--telemetry-green);
-  font-weight: 750;
+  font-weight: 800;
 }
 
 .f1-transmission-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .f1-form-label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 750;
-  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #cbd5e1;
   margin-bottom: 4px;
 }
 
 .f1-form-input {
   width: 100%;
-  background: #141414;
-  border: 1px solid var(--border-subtle);
+  background: #141720;
+  border: 1px solid var(--border-medium);
   border-radius: 6px;
-  padding: 10px 12px;
-  color: #f4f1ea;
+  padding: 12px 14px;
+  color: #ffffff;
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   outline: none;
   transition: border-color 0.2s ease;
 }
@@ -2177,7 +2232,7 @@ body {
 
 .f1-form-textarea {
   resize: vertical;
-  min-height: 85px;
+  min-height: 90px;
 }
 
 .f1-btn-send-transmission {
@@ -2186,13 +2241,13 @@ body {
   justify-content: center;
   gap: 8px;
   width: 100%;
-  padding: 12px;
+  padding: 13px;
   background: var(--racing-red);
   border: 1px solid var(--racing-red);
   color: #ffffff;
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-size: 0.86rem;
+  font-weight: 850;
   letter-spacing: 0.06em;
   border-radius: 6px;
   cursor: pointer;
@@ -2207,50 +2262,50 @@ body {
 
 .f1-transmission-success-box {
   text-align: center;
-  padding: 30px 16px;
-  background: rgba(0, 210, 106, 0.08);
-  border: 1px solid rgba(0, 210, 106, 0.3);
+  padding: 32px 18px;
+  background: rgba(0, 230, 118, 0.1);
+  border: 1px solid rgba(0, 230, 118, 0.4);
   border-radius: 8px;
 }
 
 .f1-transmission-success-box h4 {
   font-family: var(--font-mono);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: var(--telemetry-green);
   margin-bottom: 6px;
 }
 
 .f1-transmission-success-box p {
-  font-size: 0.84rem;
-  color: var(--text-secondary);
+  font-size: 0.9rem;
+  color: #cbd5e1;
 }
 
 .f1-broadcast-footer {
   border-top: 1px solid var(--border-subtle);
-  padding-top: 24px;
+  padding-top: 26px;
 }
 
 .f1-footer-top-strip {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .f1-footer-brand strong {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   letter-spacing: 0.06em;
-  color: #f4f1ea;
+  color: #ffffff;
 }
 
 .f1-footer-brand span {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
+  font-size: 0.76rem;
+  color: #94a3b8;
 }
 
 .f1-footer-status {
@@ -2258,7 +2313,7 @@ body {
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   color: var(--telemetry-green);
 }
 
@@ -2266,8 +2321,8 @@ body {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: #94a3b8;
 }
 
 .f1-back-to-top {
