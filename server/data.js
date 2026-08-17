@@ -3,7 +3,7 @@ export const portfolioData = {
     name: "Darji Krishkumar H.",
     title: "Full Stack Developer & Data Science Enthusiast",
     bio: "Currently pursuing a Bachelor of Technology in Computer Engineering at CHARUSAT with hands-on experience in full-stack development, AI-powered applications, data science, and digital hardware design. Built scalable projects using React, FastAPI, Node.js, and PostgreSQL, including an AI-powered mock interview platform and a high-performance file processing API. Strong foundation in Data Structures, DBMS, Web Development, and Python.",
-    email: "hello@krishkumardarji.com",
+    email: "hello.krishkumardarji@gmail.com",
     profileImage: "/images/krish.jpeg",
     location: "Charotar, India",
     cgpa: "7.56/10"
@@ -401,7 +401,7 @@ export const portfolioData = {
   ],
 
   social: {
-    email: "hello@krishkumardarji.com",
+    email: "hello.krishkumardarji@gmail.com",
     linkedin: "https://www.linkedin.com/in/krishkumar-d-b4a7952b1",
     github: "https://github.com/KRISHKUMAR1087",
     instagram: "https://www.instagram.com/genzkrish",

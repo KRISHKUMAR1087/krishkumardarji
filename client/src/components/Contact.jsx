@@ -26,7 +26,7 @@ export const Contact = ({ data, onOpenAdmin }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const email = data?.social?.email || "hello@krishkumardarji.com";
+  const email = data?.social?.email || "hello.krishkumardarji@gmail.com";
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
@@ -62,7 +62,7 @@ export const Contact = ({ data, onOpenAdmin }) => {
 
     // 2. Direct Email Delivery to your Inbox via FormSubmit API
     try {
-      await fetch('https://formsubmit.co/ajax/hello@krishkumardarji.com', {
+      await fetch('https://formsubmit.co/ajax/hello.krishkumardarji@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,6 +70,7 @@ export const Contact = ({ data, onOpenAdmin }) => {
         },
         body: JSON.stringify({
           _subject: `🏎️ PIT WALL TRANSMISSION: ${formState.purpose || 'New Message from Portfolio'}`,
+          _captcha: 'false',
           _template: 'table',
           'Driver / Caller Name': formState.name,
           'Caller Email': formState.email,
