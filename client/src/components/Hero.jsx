@@ -1,30 +1,29 @@
 import { useState, useEffect } from 'react';
-import { FiArrowDown, FiArrowUpRight, FiDownload } from 'react-icons/fi';
+import { FiArrowDown, FiDownload, FiActivity, FiCpu, FiZap, FiCode, FiLayers } from 'react-icons/fi';
 
 const rollerRoles = [
-  "UI/UX DESIGN",
   "SOFTWARE ENGINEERING",
-  "GEN-AI WEB APPS",
-  "FULL STACK SYSTEMS",
-  "DATA STRUCTURES",
-  "OPEN SOURCE",
-  "VIBE CODER"
+  "GEN-AI SYSTEMS",
+  "FULL STACK ARCHITECTURES",
+  "DATA STRUCTURES & ALGORITHMS",
+  "UI/UX PRECISION",
+  "SYSTEM DESIGN & FASTAPIs",
+  "PERFORMANCE TELEMETRY"
 ];
 
 export const Hero = ({ data }) => {
   const roles = [
-    "VIBE CODER",
-    "HACKATHON TOP 20",
-    "FULL STACK DEVELOPER",
-    "GEN-AI WEB DEVELOPER",
-    "B.TECH (CE)"
+    "COMPUTER ENGINEER",
+    "FULL-STACK DEVELOPER",
+    "GEN-AI SYSTEM BUILDER",
+    "HACKATHON SPRINTER • TOP 20",
+    "B.TECH (CE) • 2024–2028"
   ];
   
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Typewriter effect for roles on the right
   useEffect(() => {
     let timer;
     const activeRole = roles[currentRoleIndex];
@@ -32,17 +31,17 @@ export const Hero = ({ data }) => {
     if (isDeleting) {
       timer = setTimeout(() => {
         setDisplayText((prev) => prev.slice(0, -1));
-      }, 25);
+      }, 20);
     } else {
       timer = setTimeout(() => {
         setDisplayText((prev) => activeRole.slice(0, prev.length + 1));
-      }, 50);
+      }, 45);
     }
 
     if (!isDeleting && displayText === activeRole) {
       timer = setTimeout(() => {
         setIsDeleting(true);
-      }, 1600);
+      }, 1500);
     } else if (isDeleting && displayText === '') {
       setIsDeleting(false);
       setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
@@ -51,100 +50,126 @@ export const Hero = ({ data }) => {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, currentRoleIndex, roles]);
 
-  const quickStats = [
-    { value: '8+', label: 'Projects' },
-    { value: '7+', label: 'Certifications' },
-    { value: '18+', label: 'Hackathons Participation' }
-  ];
-
   const scrollTo = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      const yOffset = -80;
+      const yOffset = -75;
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   return (
-    <section className="hero-landing-original" id="home">
-      <div className="hero-content-original">
-        <div className="hero-grid-original">
-          {/* Left Column (Shifted Higher Up - Only Scrolling Role Roller Ribbon) */}
-          <div className="hero-spacer-col-original">
-            <div className="role-roller-floating-box">
-              <div className="role-roller-track-wrap">
-                <div className="role-roller-track">
-                  {[...rollerRoles, ...rollerRoles, ...rollerRoles].map((item, idx) => (
-                    <span key={idx} className="role-roller-item">
-                      <span className="roller-arrow">✦</span>
-                      <span>{item}</span>
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+    <section className="f1-hero-section" id="home">
+      {/* Background Track Atmosphere */}
+      <div className="f1-hero-track-bg" />
+
+      <div className="f1-hero-container">
+        {/* Trackside Marquee Ticker */}
+        <div className="f1-trackside-ticker-wrap">
+          <div className="f1-trackside-ticker">
+            {[...rollerRoles, ...rollerRoles, ...rollerRoles].map((item, idx) => (
+              <span key={idx} className="f1-ticker-item">
+                <span className="f1-ticker-flag">✦</span>
+                <span>{item}</span>
+              </span>
+            ))}
           </div>
+        </div>
 
-          {/* Right Column: Text, Roles, Bio, Metrics, CTAs */}
-          <div className="hero-text-col-original">
-            {/* Title + He/Him Badge */}
-            <div className="hero-name-row-original">
-              <h1 className="hero-name-heading-original">
-                {data?.personal?.name || "Darji Krishkumar H."}
-              </h1>
-              <span className="hero-pronoun-tag-original">He/Him</span>
+        <div className="f1-hero-grid">
+          {/* Left Column: Driver Broadcast Typography */}
+          <div className="f1-hero-driver-info">
+            <div className="f1-driver-pill">
+              <span className="f1-live-dot" />
+              <span>DRIVER / ENGINEER PROFILE • CHARUSAT DEPSTAR • 2024—2028</span>
             </div>
 
-            {/* Vibrant Cyan Role Typewriter */}
-            <div className="hero-role-line-original">
-              <span>{displayText}</span>
-              <span className="typewriter-cursor-original">|</span>
+            <h1 className="f1-hero-name">
+              KRISHKUMAR<br />
+              <span className="f1-hero-name-highlight">DARJI</span>
+            </h1>
+
+            {/* Typewriter Role Line */}
+            <div className="f1-hero-telemetry-role">
+              <span className="f1-telemetry-prefix">ROLE // </span>
+              <span className="f1-role-text">{displayText}</span>
+              <span className="f1-cursor-blink">_</span>
             </div>
 
-            {/* Rich Bio Summary */}
-            <p className="hero-bio-text-original">
-              {data?.professionalSummary || data?.personal?.bio || 
-                "Currently pursuing a Bachelor of Technology in Computer Engineering at CHARUSAT with hands-on experience in full-stack development, AI powered applications, data science, and digital hardware design. Built scalable projects using React, FastAPI, Node.js, and PostgreSQL, including an AI-powered mock interview platform and a high-performance file processing API. Strong foundation in Data Structures, DBMS, Web Development, and Python, with proven problem-solving skills demonstrated through hackathons, certifications, and coding competitions."}
+            <p className="f1-hero-manifesto">
+              Building high-performance digital systems where engineering performance, AI workflows, and precision user experiences meet.
             </p>
 
-            {/* 3 Metric Cards */}
-            <div className="hero-stats-row-original">
-              {quickStats.map((stat, idx) => (
-                <div key={idx} className="hero-stat-card-original">
-                  <div className="hero-stat-number-original">{stat.value}</div>
-                  <div className="hero-stat-label-original">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Action CTA Buttons */}
-            <div className="hero-cta-buttons-original">
+            {/* F1 Action Buttons */}
+            <div className="f1-hero-actions">
               <button 
                 onClick={() => scrollTo('projects')} 
-                className="btn-hero-primary"
+                className="f1-btn-racing-primary"
               >
-                <span>Explore Projects</span>
-                <FiArrowDown size={18} />
+                <span>EXPLORE GARAGE</span>
+                <FiArrowDown size={17} />
               </button>
 
               <a
                 href="/Krishkumar Darji.pdf"
-                download="Krishkumar_Darji_Resume.pdf"
-                className="btn-hero-secondary"
-                title="Download Resume PDF"
+                download="Krishkumar_Darji_Racing_Passport.pdf"
+                className="f1-btn-racing-secondary"
+                title="Download Racing Passport"
               >
-                <FiDownload size={18} />
-                <span>Download Resume</span>
+                <FiDownload size={17} />
+                <span>DOWNLOAD PASSPORT</span>
               </a>
 
               <button 
                 onClick={() => scrollTo('contact')} 
-                className="btn-hero-secondary"
+                className="f1-btn-racing-ghost"
               >
-                <span>Get In Touch</span>
-                <FiArrowUpRight size={18} />
+                <span>PIT WALL TRANSMISSION →</span>
               </button>
+            </div>
+          </div>
+
+          {/* Right Column: F1 Engineering Telemetry Dashboard */}
+          <div className="f1-telemetry-console-card">
+            <div className="f1-telemetry-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span className="f1-telemetry-status-light" />
+                <span className="f1-telemetry-title">ENGINEERING TELEMETRY</span>
+              </div>
+              <span className="f1-telemetry-unit">LIVE SENSORS</span>
+            </div>
+
+            <div className="f1-telemetry-rows">
+              <div className="f1-telemetry-row">
+                <span className="f1-telemetry-label">PROJECT BUILDS</span>
+                <span className="f1-telemetry-value">08+</span>
+              </div>
+              <div className="f1-telemetry-row">
+                <span className="f1-telemetry-label">ENGINEERING LICENSES</span>
+                <span className="f1-telemetry-value">08+</span>
+              </div>
+              <div className="f1-telemetry-row">
+                <span className="f1-telemetry-label">HACKATHON STARTS</span>
+                <span className="f1-telemetry-value" style={{ color: '#ffd000' }}>18+</span>
+              </div>
+              <div className="f1-telemetry-row">
+                <span className="f1-telemetry-label">PUBLIC REPOSITORIES</span>
+                <span className="f1-telemetry-value">22+</span>
+              </div>
+              <div className="f1-telemetry-row">
+                <span className="f1-telemetry-label">ANNUAL TELEMETRY COMMITS</span>
+                <span className="f1-telemetry-value" style={{ color: '#00d26a' }}>500+</span>
+              </div>
+              <div className="f1-telemetry-row" style={{ borderBottom: 'none', paddingTop: 10 }}>
+                <span className="f1-telemetry-label">DRS / SYSTEM STATUS</span>
+                <span className="f1-telemetry-active-badge">● ACTIVE</span>
+              </div>
+            </div>
+
+            <div className="f1-telemetry-footer-bar">
+              <span>TEAM: KRISHKUMAR RACING</span>
+              <span>CAR: MERN // GEN-AI SPEC</span>
             </div>
           </div>
         </div>

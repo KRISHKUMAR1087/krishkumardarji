@@ -4,7 +4,7 @@ export const AnimatedCursor = () => {
   const [hasMouse, setHasMouse] = useState(false);
   const containerRef = useRef(null);
 
-  const fullText = "KRISHKUMAR DARJI • ";
+  const fullText = "KRISHKUMAR // F1 RACING • ";
   const textIndex = useRef(0);
   const lastPos = useRef({ x: 0, y: 0 });
   const particles = useRef([]);
@@ -27,8 +27,8 @@ export const AnimatedCursor = () => {
       const dy = mouseY - lastPos.current.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Trigger every 11px for ultra-responsive fast trail
-      if (dist > 11) {
+      // Snappy telemetry trail
+      if (dist > 12) {
         const char = fullText[textIndex.current % fullText.length];
         textIndex.current += 1;
 
@@ -37,16 +37,16 @@ export const AnimatedCursor = () => {
             char,
             x: mouseX,
             y: mouseY,
-            vx: (Math.random() - 0.5) * 0.9,
-            vy: -0.9 - Math.random() * 0.6,
+            vx: (Math.random() - 0.5) * 0.8,
+            vy: -0.8 - Math.random() * 0.5,
             opacity: 1,
-            scale: 1.05,
-            rotation: (Math.random() - 0.5) * 14,
+            scale: 1,
+            rotation: (Math.random() - 0.5) * 10,
             life: 0,
-            maxLife: 55
+            maxLife: 48
           };
           particles.current.push(particle);
-          if (particles.current.length > 50) {
+          if (particles.current.length > 45) {
             particles.current.shift();
           }
         }
@@ -62,7 +62,6 @@ export const AnimatedCursor = () => {
         dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
       }
 
-      // Update and render clean floating particle elements (Pure solid crisp white)
       const container = containerRef.current;
       if (container) {
         container.innerHTML = '';
@@ -80,7 +79,7 @@ export const AnimatedCursor = () => {
             p.opacity = Math.max(0, 1 - (progress - 0.4) / 0.6);
           }
 
-          p.scale = Math.max(0.85, 1.05 - progress * 0.2);
+          p.scale = Math.max(0.8, 1 - progress * 0.2);
 
           if (p.life >= p.maxLife) {
             particles.current.splice(i, 1);
@@ -93,11 +92,11 @@ export const AnimatedCursor = () => {
           span.style.left = '0px';
           span.style.top = '0px';
           span.style.transform = `translate3d(${p.x}px, ${p.y}px, 0) rotate(${p.rotation}deg) scale(${p.scale})`;
-          span.style.color = '#ffffff';
-          span.style.fontSize = '14px';
+          span.style.color = '#f4f1ea';
+          span.style.fontSize = '13px';
           span.style.fontWeight = '800';
           span.style.fontFamily = "'JetBrains Mono', monospace";
-          span.style.textShadow = '0 2px 8px rgba(0, 0, 0, 0.9)'; // Pure crisp shadow, zero neon
+          span.style.textShadow = '0 2px 6px rgba(0, 0, 0, 0.9)';
           span.style.opacity = p.opacity;
           span.style.pointerEvents = 'none';
           span.style.userSelect = 'none';
@@ -121,7 +120,6 @@ export const AnimatedCursor = () => {
 
   return (
     <>
-      {/* Floating Clean Trail Characters Container */}
       <div
         ref={containerRef}
         style={{
@@ -136,18 +134,18 @@ export const AnimatedCursor = () => {
         }}
       />
 
-      {/* Clean Solid White Leading Dot (Zero Neon) */}
+      {/* Racing Red Precision Telemetry Dot */}
       <div
         ref={dotRef}
         style={{
           position: 'fixed',
           top: -3,
           left: -3,
-          width: 6,
-          height: 6,
+          width: 7,
+          height: 7,
           borderRadius: '50%',
-          background: '#ffffff',
-          boxShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.8)',
+          background: '#e10600',
+          boxShadow: '0 0 8px #e10600, 0 2px 6px rgba(0, 0, 0, 0.8)',
           pointerEvents: 'none',
           zIndex: 99999,
           willChange: 'transform'

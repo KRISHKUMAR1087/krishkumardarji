@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiDownload, FiEye, FiUsers } from 'react-icons/fi';
+import { FiMenu, FiX, FiDownload, FiEye, FiActivity } from 'react-icons/fi';
 
 const sections = [
-  { id: 'about', label: 'About' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'hackathons', label: 'Hackathons' },
-  { id: 'education', label: 'Education' },
-  { id: 'achievements', label: 'Achievements' },
-  { id: 'certifications', label: 'Certifications' },
-  { id: 'hobbies', label: 'Hobbies' },
-  { id: 'github', label: 'GitHub' },
-  { id: 'contact', label: 'Contact' }
+  { id: 'about', label: 'DRIVER' },
+  { id: 'machine', label: 'THE MACHINE' },
+  { id: 'projects', label: 'GARAGE' },
+  { id: 'hackathons', label: 'RACE WEEKEND' },
+  { id: 'education', label: 'SEASON HISTORY' },
+  { id: 'achievements', label: 'PODIUM' },
+  { id: 'certifications', label: 'LICENSES' },
+  { id: 'hobbies', label: 'OFF TRACK' },
+  { id: 'github', label: 'TELEMETRY' },
+  { id: 'contact', label: 'PIT WALL' }
 ];
 
 export const Navigation = () => {
@@ -20,18 +21,16 @@ export const Navigation = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [visitorCount, setVisitorCount] = useState(1486);
 
-  // Real Live Visitor Count API with hosted endpoint & persistent fallback
+  // Real Live Telemetry Visitor Count API
   useEffect(() => {
     let isMounted = true;
 
     const fetchRealVisitorCount = async () => {
       try {
-        // Hit real production counter API
         const res = await fetch('https://api.counterapi.dev/v1/KRISHKUMAR1087_portfolio/visits/up');
         if (res.ok) {
           const json = await res.json();
           if (json && typeof json.count === 'number' && isMounted) {
-            // Add initial foundation offset so counter reflects real total historical views
             const totalCount = json.count + 1280;
             setVisitorCount(totalCount);
             localStorage.setItem('kd_portfolio_visitors', totalCount.toString());
@@ -39,10 +38,9 @@ export const Navigation = () => {
           }
         }
       } catch (err) {
-        // Network or API rate limit fallback
+        // Fallback
       }
 
-      // Offline / LocalStorage fallback
       try {
         const stored = localStorage.getItem('kd_portfolio_visitors');
         const baseCount = 1486;
@@ -126,36 +124,36 @@ export const Navigation = () => {
 
   return (
     <>
-      {/* Top Left: Live Visitor Counter Badge */}
+      {/* Top Left: F1 Live Telemetry Sessions */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="top-corner-left-badge"
-        title="Live Verified Portfolio Visits"
+        className="top-corner-left-badge f1-telemetry-badge"
+        title="Live Verified Telemetry Sessions"
       >
-        <span className="live-visitor-pulse-dot" />
-        <FiEye size={13} className="visitor-eye-icon" />
+        <span className="live-visitor-pulse-dot" style={{ background: '#00d26a', boxShadow: '0 0 8px #00d26a' }} />
+        <FiActivity size={13} style={{ color: '#00d26a' }} />
         <span className="visitor-count-text">
-          <strong>{visitorCount.toLocaleString()}</strong> Visits
+          TELEMETRY: <strong>{visitorCount.toLocaleString()}</strong> SESSIONS
         </span>
       </motion.div>
 
-      {/* Top Right: Download Resume Button */}
+      {/* Top Right: Racing Passport / Resume Button */}
       <motion.a
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         href="/Krishkumar Darji.pdf"
-        download="Krishkumar_Darji_Resume.pdf"
-        className="top-corner-right-btn"
-        title="Download Krishkumar's Resume PDF"
+        download="Krishkumar_Darji_Racing_Passport.pdf"
+        className="top-corner-right-btn f1-passport-btn"
+        title="Download Racing Passport / Resume PDF"
       >
         <FiDownload size={14} className="download-icon" />
-        <span>Download Resume</span>
+        <span>RACING PASSPORT ↓</span>
       </motion.a>
 
-      {/* Center: Expanding Menu Dock */}
+      {/* Center: F1 Race Engineer Dock */}
       <div style={{
         position: 'fixed',
         top: '16px',
@@ -168,35 +166,35 @@ export const Navigation = () => {
       }}>
         <motion.nav
           layout
-          className="custom-navbar-dock"
+          className="custom-navbar-dock f1-nav-dock"
           initial={false}
           animate={{
-            width: isOpen ? (isMobile ? '92%' : '880px') : '110px',
-            height: isOpen ? (isMobile ? 'auto' : '56px') : '38px',
-            borderRadius: isOpen ? '16px' : '999px',
-            padding: isOpen ? (isMobile ? '16px' : '0 20px') : '0 14px',
+            width: isOpen ? (isMobile ? '94%' : '940px') : '135px',
+            height: isOpen ? (isMobile ? 'auto' : '52px') : '38px',
+            borderRadius: isOpen ? '12px' : '999px',
+            padding: isOpen ? (isMobile ? '16px' : '0 18px') : '0 14px',
             y: isOpen ? 6 : 0
           }}
           transition={{
             type: 'spring',
-            stiffness: 220,
-            damping: 24
+            stiffness: 240,
+            damping: 25
           }}
-          whileHover={!isOpen ? { scale: 1.05 } : undefined}
-          whileTap={!isOpen ? { scale: 0.95 } : undefined}
+          whileHover={!isOpen ? { scale: 1.04 } : undefined}
+          whileTap={!isOpen ? { scale: 0.96 } : undefined}
           style={{
             position: 'relative',
             pointerEvents: 'auto',
-            background: 'rgba(10, 12, 18, 0.88)',
+            background: 'rgba(15, 15, 15, 0.92)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
-            border: '1.5px solid rgba(255, 255, 255, 0.35)',
+            border: '1.5px solid rgba(255, 255, 255, 0.2)',
             display: 'flex',
             flexDirection: isMobile && isOpen ? 'column' : 'row',
             alignItems: 'center',
             justifyContent: 'center',
             overflow: 'hidden',
-            boxShadow: '0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 240, 255, 0.1)',
+            boxShadow: '0 16px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(225, 6, 0, 0.15)',
             cursor: isOpen ? 'default' : 'pointer'
           }}
           onClick={() => {
@@ -221,15 +219,15 @@ export const Navigation = () => {
                   gap: '8px'
                 }}
               >
-                <FiMenu size={16} style={{ color: 'var(--accent-cyan)' }} />
+                <span style={{ color: '#e10600', fontWeight: 900 }}>🏁</span>
                 <span style={{
-                  fontSize: '0.82rem',
-                  fontWeight: '700',
-                  letterSpacing: '0.1em',
-                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.78rem',
+                  fontWeight: '800',
+                  letterSpacing: '0.12em',
+                  fontFamily: "'JetBrains Mono', monospace",
                   textTransform: 'uppercase',
                   color: '#ffffff'
-                }}>MENU</span>
+                }}>PIT DOCK</span>
               </motion.div>
             ) : (
               <motion.div
@@ -244,7 +242,7 @@ export const Navigation = () => {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   width: '100%',
-                  gap: isMobile ? '14px' : '10px',
+                  gap: isMobile ? '12px' : '8px',
                   position: 'relative'
                 }}
               >
@@ -253,7 +251,7 @@ export const Navigation = () => {
                     display: 'flex',
                     flexDirection: isMobile ? 'column' : 'row',
                     alignItems: 'center',
-                    gap: isMobile ? '12px' : '14px',
+                    gap: isMobile ? '10px' : '10px',
                     listStyle: 'none',
                     margin: '0',
                     padding: '0',
@@ -271,12 +269,7 @@ export const Navigation = () => {
                           setActiveSection(section.id);
                           setIsOpen(false);
                         }}
-                        className={`nav-link-btn ${activeSection === section.id ? 'active' : ''}`}
-                        style={{
-                          fontSize: '0.85rem',
-                          fontWeight: activeSection === section.id ? 700 : 550,
-                          color: activeSection === section.id ? 'var(--accent-cyan)' : '#94a3b8'
-                        }}
+                        className={`nav-link-btn f1-nav-link ${activeSection === section.id ? 'active' : ''}`}
                       >
                         {section.label}
                       </button>
@@ -284,8 +277,7 @@ export const Navigation = () => {
                   ))}
                 </ul>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  {/* Close Button */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -301,9 +293,9 @@ export const Navigation = () => {
                       justifyContent: 'center',
                       padding: '6px'
                     }}
-                    title="Close Menu"
+                    title="Close Pit Dock"
                   >
-                    <FiX size={20} />
+                    <FiX size={18} />
                   </button>
                 </div>
               </motion.div>

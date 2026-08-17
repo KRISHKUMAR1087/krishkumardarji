@@ -1,74 +1,73 @@
-import { FiCamera, FiCompass, FiZap, FiActivity, FiSmile } from 'react-icons/fi';
+import { FiCamera, FiCompass, FiZap, FiActivity } from 'react-icons/fi';
 import { FaChessKnight, FaGamepad } from 'react-icons/fa6';
 import { MdOutlineSportsTennis } from 'react-icons/md';
+import { RevealSection } from './RevealSection';
 
-const hobbyIcons = {
-  camera: FiCamera,
-  chess: FaChessKnight,
-  game: FaGamepad,
-  sports: MdOutlineSportsTennis
-};
+const pursuits = [
+  {
+    icon: FiCamera,
+    title: "PHOTOGRAPHY",
+    category: "COMPOSITION & LIGHTING",
+    desc: "Street and product photography focusing on light geometry, composition balance, depth of field, and color grading."
+  },
+  {
+    icon: FaChessKnight,
+    title: "CHESS",
+    category: "STRATEGIC THINKING • STATE LEVEL U-17",
+    desc: "State-level competitive chess player. Fosters long-term positional thinking, pattern recognition, and calculated tactical moves under clock pressure."
+  },
+  {
+    icon: FaGamepad,
+    title: "TACTICAL GAMING",
+    category: "SPATIAL AGILITY & REFLEXES",
+    desc: "Competitive strategy games (Free Fire MAX) and algorithmic puzzle teasers that sharpen real-time decision making and coordination."
+  },
+  {
+    icon: MdOutlineSportsTennis,
+    title: "BADMINTON",
+    category: "PHYSICAL AGILITY & SPEED",
+    desc: "Active badminton player cultivating rapid reflexes, endurance, mental agility, and healthy competitive stamina."
+  }
+];
 
-export const Hobbies = ({ data }) => {
-  const hobbies = data?.hobbies || [
-    {
-      title: "Photography & Visual Framing",
-      category: "Creative Arts",
-      icon: "camera",
-      description: "Street and product photography focusing on light geometry, composition balance, depth of field, and color grading."
-    },
-    {
-      title: "Chess (State Level U-17)",
-      category: "Strategic Thinking",
-      icon: "chess",
-      description: "State-level competitive chess player. Fosters long-term positional thinking, pattern recognition, and calculated tactical moves under clock pressure."
-    },
-    {
-      title: "Tactical Gaming & Puzzles",
-      category: "Spatial Agility",
-      icon: "game",
-      description: "Competitive strategy games (Free Fire MAX) and algorithmic brain teasers that sharpen real-time decision making and coordination."
-    },
-    {
-      title: "Badminton & Active Sports",
-      category: "Physical Agility",
-      icon: "sports",
-      description: "Playing competitive badminton to cultivate quick reflexes, endurance, mental agility, and healthy team dynamics."
-    }
-  ];
-
+export const Hobbies = () => {
   return (
-    <section id="hobbies" className="section">
+    <section id="hobbies" className="section f1-offtrack-section">
       <div className="container">
-        <div className="section-header">
-          <div className="section-badge">
-            <FiSmile size={14} />
-            <span>Beyond The Screen</span>
+        <RevealSection variant="speed-wipe">
+          <div className="section-header">
+            <div className="f1-section-badge">
+              <span className="f1-badge-red-block">08</span>
+              <span>OFF THE TRACK // DRIVER AGILITY</span>
+            </div>
+            <h2>Off The Track: Strategy & Pursuits</h2>
+            <p>
+              Disciplines that keep creative thinking sharp, strategic reflexes quick, and perspective fresh.
+            </p>
           </div>
-          <h2>Creative Pursuits & Interests</h2>
-          <p>
-            Disciplines that keep creative thinking sharp, strategic reflexes quick, and perspective fresh.
-          </p>
-        </div>
+        </RevealSection>
 
-        <div className="hobbies-grid">
-          {hobbies.map((hobby, idx) => {
-            const Icon = hobbyIcons[hobby.icon] || FiCompass;
+        <RevealSection variant="stagger-cards" className="f1-offtrack-grid">
+          {pursuits.map((item, idx) => {
+            const Icon = item.icon;
             return (
               <article
                 key={idx}
-                className="hobby-card"
+                className="f1-offtrack-card"
               >
-                <div className="hobby-icon-wrap">
-                  <Icon />
+                <div className="f1-offtrack-top">
+                  <div className="f1-offtrack-icon-box">
+                    <Icon size={22} />
+                  </div>
+                  <span className="f1-offtrack-cat">{item.category}</span>
                 </div>
-                <div className="hobby-category">{hobby.category || "Passion"}</div>
-                <h3 className="hobby-title">{hobby.title}</h3>
-                <p className="hobby-desc">{hobby.description}</p>
+
+                <h3 className="f1-offtrack-title">{item.title}</h3>
+                <p className="f1-offtrack-desc">{item.desc}</p>
               </article>
             );
           })}
-        </div>
+        </RevealSection>
       </div>
     </section>
   );

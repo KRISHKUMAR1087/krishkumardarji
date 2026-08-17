@@ -15,17 +15,17 @@ import {
   Hobbies,
   GitHubHighlights,
   Contact,
-  RaceLineProgress,
   AnimatedCursor,
   AppleHelloIntro,
-  AdminPortal
+  AdminPortal,
+  RaceLineProgress
 } from './components';
 import { portfolioData as initialData } from './data/fallbackData';
 import { ThemeProvider } from './context/ThemeContext';
 import './styles/global.css';
 import './styles/scroll-motion.css';
 
-const sectionOrder = [
+const SECTION_ORDER = [
   'home',
   'about',
   'machine',
@@ -99,7 +99,7 @@ function AppContent({ data }) {
     <>
       <AppleHelloIntro />
       <AnimatedCursor />
-      <RaceLineProgress sections={sectionOrder} />
+      <RaceLineProgress sections={SECTION_ORDER} />
       <MotionBackdrop />
       <Navigation />
       

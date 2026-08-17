@@ -5,27 +5,15 @@ import {
   FiExternalLink, 
   FiStar, 
   FiFolder, 
-  FiActivity,
-  FiCode,
-  FiClock,
-  FiCheckCircle,
-  FiGitBranch,
-  FiRefreshCw
+  FiActivity
 } from 'react-icons/fi';
 
 const fallbackCommits = [
   {
     repo: "Portfolio-MERN",
-    message: "feat(ui): add authentic marvel spider-man web matrix and apple hello animations",
+    message: "feat(f1): implement F1 engineer technical telemetry theme & racing garage",
     time: "Today",
     hash: "6f343b5",
-    url: "https://github.com/KRISHKUMAR1087/Portfolio-MERN"
-  },
-  {
-    repo: "Portfolio-MERN",
-    message: "feat(deploy): configure github pages automated deployment workflow",
-    time: "Yesterday",
-    hash: "a9f4c21",
     url: "https://github.com/KRISHKUMAR1087/Portfolio-MERN"
   },
   {
@@ -48,20 +36,13 @@ const fallbackCommits = [
     time: "1 week ago",
     hash: "98ab45e",
     url: "https://github.com/hastiborda1/TransitOps"
-  },
-  {
-    repo: "Finspark_Hackathon_Prototype",
-    message: "feat: add insider threat detection anomaly rule filters",
-    time: "2 weeks ago",
-    hash: "45f0d3a",
-    url: "https://github.com/KRISHKUMAR1087/Finspark_Hackathon_Prototype"
   }
 ];
 
 const fallbackFeaturedRepos = [
   {
     name: "Portfolio-MERN",
-    description: "Production-grade MERN portfolio architected with React, Express, Marvel Spider-Man web stack, and Apple-style UI/UX design.",
+    description: "Production-grade MERN portfolio architected with F1 motorsport telemetry, React, and high-performance UX.",
     language: "JavaScript / React",
     stars: 8,
     forks: 3,
@@ -82,14 +63,6 @@ const fallbackFeaturedRepos = [
     stars: 6,
     forks: 2,
     url: "https://github.com/KRISHKUMAR1087/ABTalks"
-  },
-  {
-    name: "Liberary-Management",
-    description: "Smart library automation system with automated cataloging, loan duration alerts, and fine calculation engine.",
-    language: "Node.js / Express",
-    stars: 3,
-    forks: 1,
-    url: "https://github.com/KRISHKUMAR1087/Liberary-Management"
   }
 ];
 
@@ -104,121 +77,158 @@ export const GitHubHighlights = ({ data }) => {
     followers: 12,
     following: 15
   });
-  const [chartLoaded, setChartLoaded] = useState(false);
 
-  // Fetch real public GitHub events & repositories for KRISHKUMAR1087
+  // Cached, single-flight fetch with 30-minute sessionStorage / localStorage cache to prevent GitHub 403 Rate Limits
   useEffect(() => {
-    const fetchGitHubData = async () => {
+    const CACHE_KEY = 'kd_github_cache_v2';
+    const CACHE_TTL = 30 * 60 * 1000; // 30 minutes cache
+
+    const loadCachedOrFetch = async () => {
       try {
-        // 1. Fetch User Profile Stats
-        const userRes = await fetch(`https://api.github.com/users/${username}`);
-        if (userRes.ok) {
-          const userData = await userRes.json();
-          setUserStats({
+        const cachedRaw = sessionStorage.getItem(CACHE_KEY) || localStorage.getItem(CACHE_KEY);
+        if (cachedRaw) {
+          const cached = JSON.parse(cachedRaw);
+          if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+            if (cached.commits) setCommits(cached.commits);
+            if (cached.repos) setRepos(cached.repos);
+            if (cached.userStats) setUserStats(cached.userStats);
+            return; // Use verified cache, zero network calls to avoid rate limit!
+          }
+        }
+      } catch (e) {
+        // Fallback to fetch
+      }
+
+      // Single flight batch fetch
+      try {
+        const [userRes, eventsRes, reposRes] = await Promise.allSettled([
+          fetch(`https://api.github.com/users/${username}`),
+          fetch(`https://api.github.com/users/${username}/events/public`),
+          fetch(`https://api.github.com/users/${username}/repos?sort=pushed&per_page=4`)
+        ]);
+
+        let fetchedUserStats = { publicRepos: 22, followers: 12, following: 15 };
+        let fetchedCommits = fallbackCommits;
+        let fetchedRepos = fallbackFeaturedRepos;
+
+        if (userRes.status === 'fulfilled' && userRes.value.ok) {
+          const userData = await userRes.value.json();
+          fetchedUserStats = {
             publicRepos: userData.public_repos || 22,
             followers: userData.followers || 12,
             following: userData.following || 15
-          });
+          };
+          setUserStats(fetchedUserStats);
         }
 
-        // 2. Fetch Live Public Commits / Events
-        const eventsRes = await fetch(`https://api.github.com/users/${username}/events/public`);
-        if (eventsRes.ok) {
-          const events = await eventsRes.json();
-          const pushEvents = events.filter(e => e.type === 'PushEvent');
-          if (pushEvents.length > 0) {
-            const parsed = [];
-            for (const ev of pushEvents) {
-              const repoName = ev.repo?.name?.split('/')?.[1] || ev.repo?.name || 'Repository';
-              const commitList = ev.payload?.commits || [];
-              for (const c of commitList) {
-                parsed.push({
-                  repo: repoName,
-                  message: c.message || 'Updated repository code',
-                  time: new Date(ev.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
-                  hash: (c.sha || '').slice(0, 7) || 'commit',
-                  url: `https://github.com/${ev.repo?.name}/commit/${c.sha}`
-                });
-                if (parsed.length >= 8) break;
+        if (eventsRes.status === 'fulfilled' && eventsRes.value.ok) {
+          const events = await eventsRes.value.json();
+          if (Array.isArray(events)) {
+            const pushEvents = events.filter(e => e.type === 'PushEvent');
+            if (pushEvents.length > 0) {
+              const parsed = [];
+              for (const ev of pushEvents) {
+                const repoName = ev.repo?.name?.split('/')?.[1] || ev.repo?.name || 'Repository';
+                const commitList = ev.payload?.commits || [];
+                for (const c of commitList) {
+                  parsed.push({
+                    repo: repoName,
+                    message: c.message || 'Updated repository code',
+                    time: new Date(ev.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+                    hash: (c.sha || '').slice(0, 7) || 'commit',
+                    url: `https://github.com/${ev.repo?.name}/commit/${c.sha}`
+                  });
+                  if (parsed.length >= 4) break;
+                }
+                if (parsed.length >= 4) break;
               }
-              if (parsed.length >= 8) break;
-            }
-            if (parsed.length > 0) {
-              setCommits(parsed);
+              if (parsed.length > 0) {
+                fetchedCommits = parsed.slice(0, 4);
+                setCommits(fetchedCommits);
+              }
             }
           }
         }
 
-        // 3. Fetch Real Public Repos
-        const reposRes = await fetch(`https://api.github.com/users/${username}/repos?sort=pushed&per_page=6`);
-        if (reposRes.ok) {
-          const reposData = await reposRes.json();
+        if (reposRes.status === 'fulfilled' && reposRes.value.ok) {
+          const reposData = await reposRes.value.json();
           if (Array.isArray(reposData) && reposData.length > 0) {
             const parsedRepos = reposData.map((r) => ({
               name: r.name,
-              description: r.description || 'Full-stack application engineered with scalable architecture and clean code.',
+              description: r.description || 'Full-stack engineering machine built with scalable architecture.',
               language: r.language || 'JavaScript / TypeScript',
               stars: r.stargazers_count || 0,
               forks: r.forks_count || 0,
               url: r.html_url
             }));
-            setRepos(parsedRepos);
+            fetchedRepos = parsedRepos.slice(0, 3);
+            setRepos(fetchedRepos);
           }
         }
+
+        // Save result to cache
+        try {
+          const payload = {
+            timestamp: Date.now(),
+            commits: fetchedCommits,
+            repos: fetchedRepos,
+            userStats: fetchedUserStats
+          };
+          sessionStorage.setItem(CACHE_KEY, JSON.stringify(payload));
+          localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
+        } catch (err) {
+          // Ignore cache write error
+        }
       } catch (err) {
-        // Fallback gracefully to predefined verified records
+        // Fallback silently without throwing or repeating
       }
     };
 
-    fetchGitHubData();
+    loadCachedOrFetch();
   }, [username]);
 
   return (
-    <section id="github" className="section">
+    <section id="github" className="section f1-telemetry-section">
       <div className="container">
         <div className="section-header">
-          <div className="section-badge">
-            <FiGitCommit size={14} />
-            <span>Open Source & Version Control</span>
+          <div className="f1-section-badge">
+            <span className="f1-badge-red-block">09</span>
+            <span>LIVE TELEMETRY // OPEN SOURCE</span>
           </div>
-          <h2>Live Commit History & GitHub Activity</h2>
+          <h2>Live Telemetry & Engineering Activity</h2>
           <p>
-            Original contribution graph and verified commit logs tracking real-time development velocity across repositories.
+            Real-time development activity from the engineering garage tracking continuous code velocity across repositories.
           </p>
         </div>
 
-        {/* Top GitHub Stats Strip */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16, marginBottom: 28 }}>
-          <div className="hack-stat-card">
-            <div className="hack-stat-val">500+</div>
-            <div className="hack-stat-name">Yearly Contributions</div>
+        {/* Telemetry Stats Strip */}
+        <div className="f1-telemetry-stats-grid">
+          <div className="f1-telemetry-stat-card">
+            <div className="f1-telemetry-stat-val" style={{ color: '#00d26a' }}>500+</div>
+            <div className="f1-telemetry-stat-lbl">ANNUAL CONTRIBUTIONS</div>
           </div>
-          <div className="hack-stat-card">
-            <div className="hack-stat-val" style={{ color: 'var(--accent-cyan)' }}>
-              {userStats.publicRepos}+
-            </div>
-            <div className="hack-stat-name">Public Repositories</div>
+          <div className="f1-telemetry-stat-card">
+            <div className="f1-telemetry-stat-val" style={{ color: '#00f0ff' }}>{userStats.publicRepos}+</div>
+            <div className="f1-telemetry-stat-lbl">PUBLIC REPOSITORIES</div>
           </div>
-          <div className="hack-stat-card">
-            <div className="hack-stat-val" style={{ color: 'var(--accent-emerald)' }}>Top 20</div>
-            <div className="hack-stat-name">GDG Tech Sprint</div>
+          <div className="f1-telemetry-stat-card">
+            <div className="f1-telemetry-stat-val" style={{ color: '#ffd000' }}>TOP 20</div>
+            <div className="f1-telemetry-stat-lbl">GDG TECH SPRINT</div>
           </div>
-          <div className="hack-stat-card">
-            <div className="hack-stat-val" style={{ color: 'var(--accent-violet)' }}>18+</div>
-            <div className="hack-stat-name">Hackathon Repos</div>
+          <div className="f1-telemetry-stat-card">
+            <div className="f1-telemetry-stat-val" style={{ color: '#e10600' }}>18+</div>
+            <div className="f1-telemetry-stat-lbl">HACKATHON REPOS</div>
           </div>
         </div>
 
-        {/* Real Original GitHub Contribution Graph */}
-        <div className="bento-card" style={{ marginBottom: 28, padding: '28px 24px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <div className="bento-icon-badge">
-                <FiActivity size={22} />
-              </div>
+        {/* Live Contribution Graph */}
+        <div className="f1-contribution-graph-card">
+          <div className="f1-graph-header">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <FiActivity size={20} style={{ color: '#e10600' }} />
               <div>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: 2 }}>Original GitHub Contribution Graph</h3>
-                <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                <h3 style={{ fontSize: '1.1rem', margin: 0 }}>ENGINEERING ACTIVITY // COMMIT MAP</h3>
+                <span style={{ fontSize: '0.78rem', color: '#94a3b8', fontFamily: "'JetBrains Mono', monospace" }}>
                   Live contribution graph for @{username} on GitHub
                 </span>
               </div>
@@ -228,180 +238,107 @@ export const GitHubHighlights = ({ data }) => {
               href={`https://github.com/${username}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="project-category-tag"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}
+              className="f1-gh-profile-btn"
             >
-              <FiGithub size={13} />
+              <FiGithub size={14} />
               <span>github.com/{username}</span>
               <FiExternalLink size={12} />
             </a>
           </div>
 
-          {/* Official Live SVG Contribution Calendar for KRISHKUMAR1087 */}
-          <div className="github-chart-container">
+          <div className="github-chart-container" style={{ background: '#0a0a0a', padding: '16px', borderRadius: '12px' }}>
             <div className="github-chart-scroll-wrap">
               <img
-                src={`https://ghchart.rshah.org/00f0ff/${username}`}
+                src={`https://ghchart.rshah.org/e10600/${username}`}
                 alt={`${username}'s Real GitHub Contribution Graph`}
                 className="github-live-chart-img"
-                onLoad={() => setChartLoaded(true)}
               />
             </div>
           </div>
         </div>
 
-        {/* Interactive Commit History Feed & Featured Repositories */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: 24 }}>
-          {/* Left Column: Recent Commit Timeline */}
-          <div className="bento-card">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <FiGitCommit style={{ color: 'var(--accent-cyan)', fontSize: '1.3rem' }} />
-                <h3 style={{ fontSize: '1.15rem' }}>Recent Commit History</h3>
+        {/* Recent Telemetry Commits & Team Repositories */}
+        <div className="f1-telemetry-feed-grid">
+          {/* Left Column: Recent Commits */}
+          <div className="f1-feed-card">
+            <div className="f1-feed-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <FiGitCommit style={{ color: '#00d26a' }} />
+                <h3 style={{ fontSize: '1rem', margin: 0 }}>RECENT TELEMETRY</h3>
               </div>
-              <span className="project-category-tag" style={{ fontSize: '0.72rem' }}>
-                Verified Stream
-              </span>
+              <span className="f1-feed-badge">VERIFIED STREAM</span>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {commits.map((c, idx) => (
+            <div className="f1-commits-list">
+              {commits.slice(0, 4).map((c, idx) => (
                 <a
                   key={idx}
                   href={c.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    padding: '12px 14px',
-                    borderRadius: 'var(--radius-md)',
-                    background: 'rgba(0, 0, 0, 0.28)',
-                    border: '1px solid var(--border-subtle)',
-                    transition: 'all 0.2s ease',
-                    textDecoration: 'none'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border-accent)';
-                    e.currentTarget.style.transform = 'translateX(4px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                    e.currentTarget.style.transform = 'translateX(0)';
-                  }}
+                  className="f1-commit-row"
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+                  <div className="f1-commit-top">
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                      <FiFolder style={{ color: 'var(--accent-cyan)', fontSize: '0.9rem' }} />
-                      <strong style={{ fontSize: '0.88rem', color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
-                        {c.repo}
-                      </strong>
+                      <FiFolder style={{ color: '#e10600', fontSize: '0.85rem' }} />
+                      <strong className="f1-commit-repo">{c.repo}</strong>
                     </div>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
-                      {c.time}
-                    </span>
+                    <span className="f1-commit-time">{c.time}</span>
                   </div>
 
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, margin: '2px 0 6px' }}>
-                    {c.message}
-                  </p>
+                  <p className="f1-commit-msg">{c.message}</p>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{
-                      fontSize: '0.72rem',
-                      fontFamily: 'var(--font-mono)',
-                      background: 'rgba(0, 240, 255, 0.1)',
-                      color: 'var(--accent-cyan)',
-                      padding: '2px 6px',
-                      borderRadius: '4px'
-                    }}>
-                      #{c.hash}
-                    </span>
-                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>main branch</span>
-                  </div>
+                  <span className="f1-commit-hash">#{c.hash}</span>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Right Column: Top Repositories */}
-          <div className="bento-card">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <FiGithub style={{ color: 'var(--accent-emerald)', fontSize: '1.3rem' }} />
-                <h3 style={{ fontSize: '1.15rem' }}>Top Repositories</h3>
+          {/* Right Column: Featured Repositories */}
+          <div className="f1-feed-card">
+            <div className="f1-feed-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <FiGithub style={{ color: '#ffd000' }} />
+                <h3 style={{ fontSize: '1rem', margin: 0 }}>TEAM GARAGE // REPOSITORIES</h3>
               </div>
               <a
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ fontSize: '0.8rem', color: 'var(--accent-cyan)', display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none' }}
+                className="f1-view-all-link"
               >
-                <span>View All</span>
+                <span>VIEW ALL</span>
                 <FiExternalLink size={12} />
               </a>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              {repos.slice(0, 4).map((repo, idx) => (
+            <div className="f1-repos-list">
+              {repos.slice(0, 3).map((repo, idx) => (
                 <a
                   key={idx}
                   href={repo.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    padding: '14px',
-                    borderRadius: 'var(--radius-md)',
-                    background: 'rgba(0, 0, 0, 0.28)',
-                    border: '1px solid var(--border-subtle)',
-                    transition: 'all 0.2s ease',
-                    display: 'block',
-                    textDecoration: 'none'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(0, 255, 163, 0.35)';
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                  }}
+                  className="f1-repo-card"
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>
-                      {repo.name}
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: 'var(--accent-amber)', fontSize: '0.78rem' }}>
-                      <FiStar size={12} />
+                  <div className="f1-repo-top">
+                    <strong className="f1-repo-name">{repo.name}</strong>
+                    <div className="f1-repo-stars">
+                      <FiStar size={11} style={{ color: '#ffd000' }} />
                       <span>{repo.stars}</span>
                     </div>
                   </div>
 
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: 10 }}>
-                    {repo.description}
-                  </p>
+                  <p className="f1-repo-desc">{repo.description}</p>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent-emerald)', display: 'inline-block' }} />
+                  <div className="f1-repo-meta">
+                    <span className="f1-repo-dot" />
                     <span>{repo.language}</span>
                   </div>
                 </a>
               ))}
             </div>
           </div>
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: 36 }}>
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-premium btn-secondary"
-          >
-            <FiGithub />
-            <span>Follow @{username} on GitHub</span>
-            <FiExternalLink />
-          </a>
         </div>
       </div>
     </section>

@@ -9,12 +9,22 @@ import {
   FiCopy,
   FiCheck,
   FiSend,
-  FiMessageSquare
+  FiRadio,
+  FiTerminal
 } from 'react-icons/fi';
 import { FaThreads, FaSnapchat } from 'react-icons/fa6';
+import { RevealSection } from './RevealSection';
 
-export const Contact = ({ data }) => {
+export const Contact = ({ data, onOpenAdmin }) => {
   const [copied, setCopied] = useState(false);
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    purpose: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const email = data?.social?.email || "hello@krishkumardarji.com";
 
@@ -24,6 +34,49 @@ export const Contact = ({ data }) => {
     setTimeout(() => {
       setCopied(false);
     }, 3000);
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (!formState.name || !formState.email || !formState.message) return;
+
+    setIsSubmitting(true);
+
+    const queryObj = {
+      id: Date.now(),
+      name: formState.name,
+      email: formState.email,
+      subject: formState.purpose || "Pit Wall Transmission",
+      message: formState.message,
+      date: new Date().toLocaleString(),
+      read: false
+    };
+
+    try {
+      const existing = localStorage.getItem('kd_visitor_queries');
+      const queries = existing ? JSON.parse(existing) : [];
+      queries.unshift(queryObj);
+      localStorage.setItem('kd_visitor_queries', JSON.stringify(queries));
+    } catch (err) {
+      // Fallback
+    }
+
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(queryObj)
+      });
+    } catch (err) {
+      // Resilient offline
+    }
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitSuccess(true);
+      setFormState({ name: '', email: '', purpose: '', message: '' });
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    }, 500);
   };
 
   const socialLinks = [
@@ -50,130 +103,176 @@ export const Contact = ({ data }) => {
       url: data?.social?.twitter || "https://x.com/genzkrish",
       icon: FiTwitter,
       handle: "@genzkrish"
-    },
-    {
-      name: "Threads",
-      url: data?.social?.threads || "https://www.threads.net/@genzkrish",
-      icon: FaThreads,
-      handle: "@genzkrish"
-    },
-    {
-      name: "Snapchat",
-      url: data?.social?.snapchat || "https://www.snapchat.com/add/genzkrish",
-      icon: FaSnapchat,
-      handle: "@genzkrish"
     }
   ];
 
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section f1-pitwall-section">
       <div className="container">
-        <div className="contact-container-card">
-          <div className="contact-header-layout">
-            <div>
-              <div className="section-badge" style={{ marginBottom: 14 }}>
-                <FiMessageSquare size={14} />
-                <span>Let's Connect</span>
+        <RevealSection variant="curtain">
+          <div className="f1-pitwall-card">
+            <div className="f1-pitwall-grid">
+              {/* Left Column: Radio Channel & Driver Direct Comms */}
+              <div className="f1-pitwall-left">
+                <div className="f1-section-badge" style={{ marginBottom: 12 }}>
+                  <span className="f1-badge-red-block">10</span>
+                  <span>PIT WALL // COMMUNICATION CHANNEL</span>
+                </div>
+
+                <h2 className="f1-pitwall-title">
+                  Open Radio Transmission
+                </h2>
+                <p className="f1-pitwall-desc">
+                  Have an engineering project, internship opportunity, or hackathon collaboration? The pit wall radio is always open for transmissions.
+                </p>
+
+                {/* Direct Frequency / Email Copy Box */}
+                <div className="f1-comms-frequency-box">
+                  <span className="f1-frequency-tag">PRIMARY FREQUENCY //</span>
+                  <div className="f1-frequency-row">
+                    <FiMail style={{ color: '#e10600', fontSize: '1.1rem' }} />
+                    <span className="f1-frequency-email">{email}</span>
+                    <button
+                      onClick={handleCopyEmail}
+                      className="f1-copy-freq-btn"
+                      title="Copy Frequency Email"
+                    >
+                      {copied ? <FiCheck /> : <FiCopy />}
+                      <span>{copied ? 'COPIED' : 'COPY'}</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Team Communication Links */}
+                <div className="f1-social-links-title">TEAM CHANNELS //</div>
+                <div className="f1-social-links-grid">
+                  {socialLinks.map((item, idx) => {
+                    const Icon = item.icon;
+                    return (
+                      <a
+                        key={idx}
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="f1-social-channel-btn"
+                      >
+                        <Icon style={{ fontSize: '1.1rem', color: '#e10600' }} />
+                        <div>
+                          <div style={{ fontSize: '0.84rem', fontWeight: 700, color: '#f4f1ea' }}>
+                            {item.name}
+                          </div>
+                          <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontFamily: "'JetBrains Mono', monospace" }}>
+                            {item.handle}
+                          </div>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
-              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', marginBottom: 14 }}>
-                Have an idea, project, or opportunity?
-              </h2>
-              <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                Whether you're looking for a developer with UI/UX precision, interested in collaborating on hackathons, or exploring internships — my inbox is always open.
-              </p>
 
-              {/* Copy Email Box */}
-              <div className="contact-email-copy-box">
-                <FiMail style={{ color: 'var(--accent-cyan)', fontSize: '1.2rem', marginLeft: 4 }} />
-                <span className="contact-email-text">{email}</span>
-                <button
-                  onClick={handleCopyEmail}
-                  className="copy-btn"
-                  title="Copy email to clipboard"
-                >
-                  {copied ? (
-                    <>
-                      <FiCheck />
-                      <span>Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <FiCopy />
-                      <span>Copy</span>
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
+              {/* Right Column: Transmission Console Form */}
+              <div className="f1-pitwall-form-console">
+                <div className="f1-form-console-header">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <FiRadio style={{ color: '#00d26a' }} />
+                    <h3 style={{ fontSize: '1.05rem', margin: 0, letterSpacing: '0.04em' }}>
+                      TRANSMISSION CONSOLE
+                    </h3>
+                  </div>
+                  <span className="f1-form-console-status">LIVE CHANNEL ●</span>
+                </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <a
-                href={`mailto:${email}`}
-                className="btn-premium btn-primary"
-                style={{ width: '100%', justifyContent: 'center', padding: '16px 28px' }}
-              >
-                <FiSend />
-                <span>Send Direct Email</span>
-              </a>
-
-              <a
-                href={data?.social?.linkedin || "https://www.linkedin.com/in/krishkumar-d-b4a7952b1"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-premium btn-secondary"
-                style={{ width: '100%', justifyContent: 'center', padding: '16px 28px' }}
-              >
-                <FiLinkedin />
-                <span>Connect on LinkedIn</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Social Profiles Grid */}
-          <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: 36 }}>
-            <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginBottom: 18, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-              Social & Developer Networks
-            </div>
-
-            <div className="socials-grid">
-              {socialLinks.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <a
-                    key={idx}
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-card-btn"
-                  >
-                    <Icon style={{ fontSize: '1.25rem', color: 'var(--accent-cyan)' }} />
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <span style={{ fontSize: '0.88rem', fontWeight: 650, color: 'var(--text-primary)' }}>
-                        {item.name}
-                      </span>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                        {item.handle}
-                      </span>
+                {submitSuccess ? (
+                  <div className="f1-transmission-success-box">
+                    <FiCheck size={32} style={{ color: '#00d26a', marginBottom: 8 }} />
+                    <h4>TRANSMISSION RECEIVED // 100%</h4>
+                    <p>Your message has been broadcast to Krishkumar's pit wall. Expect a prompt telemetry reply.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleFormSubmit} className="f1-transmission-form">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                      <div>
+                        <label className="f1-form-label">DRIVER / CALLER NAME *</label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="John Doe"
+                          value={formState.name}
+                          onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                          className="f1-form-input"
+                        />
+                      </div>
+                      <div>
+                        <label className="f1-form-label">EMAIL ADDRESS *</label>
+                        <input
+                          type="email"
+                          required
+                          placeholder="john@example.com"
+                          value={formState.email}
+                          onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                          className="f1-form-input"
+                        />
+                      </div>
                     </div>
-                  </a>
-                );
-              })}
+
+                    <div>
+                      <label className="f1-form-label">PURPOSE / OPPORTUNITY</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Full-Stack Internship / Hackathon Team"
+                        value={formState.purpose}
+                        onChange={(e) => setFormState({ ...formState, purpose: e.target.value })}
+                        className="f1-form-input"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="f1-form-label">TRANSMISSION MESSAGE *</label>
+                      <textarea
+                        required
+                        rows="4"
+                        placeholder="Hi Krishkumar, let's discuss..."
+                        value={formState.message}
+                        onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                        className="f1-form-input f1-form-textarea"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="f1-btn-send-transmission"
+                    >
+                      <FiSend size={15} />
+                      <span>{isSubmitting ? 'TRANSMITTING...' : 'SEND TRANSMISSION →'}</span>
+                    </button>
+                  </form>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </RevealSection>
 
-        {/* Footer */}
-        <footer className="site-footer">
-          <p>
-            Designed & Engineered with UI/UX Excellence by{' '}
-            <strong style={{ color: 'var(--text-primary)' }}>Darji Krishkumar H.</strong>
-          </p>
-          <p style={{ marginTop: 6, fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-            CHARUSAT (DEPSTAR) • Computer Engineering • 2024–2028
-          </p>
+        {/* F1 Race Broadcast Footer */}
+        <footer className="f1-broadcast-footer">
+          <div className="f1-footer-top-strip">
+            <div className="f1-footer-brand">
+              <strong>KRISHKUMAR // ENGINEERING</strong>
+              <span>B.TECH COMPUTER ENGINEERING • CHARUSAT DEPSTAR • 2024 — 2028</span>
+            </div>
+            <div className="f1-footer-status">
+              <span className="f1-live-dot" style={{ background: '#00d26a', boxShadow: '0 0 6px #00d26a' }} />
+              <span>STATUS: AVAILABLE FOR OPPORTUNITIES</span>
+            </div>
+          </div>
+
+          <div className="f1-footer-bottom-strip">
+            <span>ENGINEERED IN GUJARAT, INDIA 🇮🇳</span>
+            <span>© 2026 KRISHKUMAR DARJI • RACING EDITION</span>
+          </div>
         </footer>
 
-        {/* Copied Toast Notification */}
         <AnimatePresence>
           {copied && (
             <motion.div
@@ -183,8 +282,8 @@ export const Contact = ({ data }) => {
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
               transition={{ duration: 0.25 }}
             >
-              <FiCheck style={{ color: 'var(--accent-emerald)', fontSize: '1.2rem' }} />
-              <span>Email copied to clipboard!</span>
+              <FiCheck style={{ color: '#00d26a', fontSize: '1.2rem' }} />
+              <span>Frequency copied to clipboard!</span>
             </motion.div>
           )}
         </AnimatePresence>
