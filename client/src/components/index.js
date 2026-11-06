@@ -10,7 +10,6 @@ export { Certifications } from './Certifications';
 export { Projects } from './Projects';
 export { Contact } from './Contact';
 export { MotionBackdrop } from './MotionBackdrop';
-export { ScrollProgress } from './ScrollProgress';
 export { GitHubHighlights } from './GitHubHighlights';
 export { Hackathons } from './Hackathons';
 export { AppleHelloIntro } from './AppleHelloIntro';
