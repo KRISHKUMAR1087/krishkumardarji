@@ -1,209 +1,88 @@
-# 🚀 Professional MERN Portfolio
+# Hi there, I'm Darji Krishkumar H. 👋
 
-A modern, fully animated portfolio built with **MongoDB, Express, React, and Node.js** featuring smooth animations, an animated cursor, and professional design.
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=E10600&center=true&vCenter=true&width=650&lines=Full-Stack+Developer+%26+UI%2FUX+Designer;Gen-AI+%26+FastAPI+Enthusiast;Computer+Engineering+Undergraduate+at+CHARUSAT;Building+Scalable+%26+Frictionless+Web+Systems" alt="Typing SVG" />
+</p>
 
-## ✨ Features
-
-- **Modern React Frontend** with Framer Motion animations
-- **Express.js Backend** with API routes
-- **Fully Animated UI** - Smooth transitions and interactive elements
-- **Animated Cursor** - Custom cursor with hover effects
-- **Responsive Design** - Mobile-first approach
-- **Direct Portfolio Load** - No scroll gate, lands directly on portfolio
-- **Professional Design** - Modern dark theme with accent colors
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React 18, Vite, Framer Motion, React Icons
-- **Backend**: Node.js, Express, CORS
-- **Styling**: Modern CSS3 with animations and glassmorphism
-- **Deployment**: Ready for production
-
-## 📋 Prerequisites
-
-- Node.js (v16+)
-- npm or yarn
-
-## 🚀 Installation & Setup
-
-### 1. Clone and Install All Dependencies
-
-```bash
-cd portfolio-mern
-npm run install-all
-```
-
-### 2. Start Development Servers
-
-```bash
-npm run dev
-```
-
-This will start:
-- **Frontend**: http://localhost:3000
-- **Backend**: http://localhost:5000
-
-## 📁 Project Structure
-
-```
-portfolio-mern/
-├── server/                 # Express backend
-│   ├── server.js          # Main server file
-│   ├── data.js            # Portfolio data
-│   └── package.json
-├── client/                # React frontend
-│   ├── src/
-│   │   ├── components/    # Reusable components
-│   │   ├── styles/        # Global styles
-│   │   ├── App.jsx        # Main app component
-│   │   └── main.jsx       # Entry point
-│   ├── public/
-│   │   └── index.html
-│   └── vite.config.js
-└── package.json           # Root package.json
-```
-
-## 🎨 Components
-
-### Frontend Components
-
-- **Navigation** - Sticky navigation with smooth scrolling
-- **Hero** - Landing section with animated profile
-- **About** - Professional summary with skills
-- **Hobbies** - Personal interests showcase
-- **Education** - School and college information
-- **Achievements** - Awards and recognitions
-- **Projects** - Portfolio projects with links
-- **Contact** - Social media and contact links
-- **AnimatedCursor** - Custom cursor implementation
-- **AnimatedCard** - Reusable card with animations
-
-## 🔧 Customization
-
-### Update Portfolio Data
-
-Edit `server/data.js` to update your portfolio information:
-
-```javascript
-export const portfolioData = {
-  personal: {
-    name: "Your Name",
-    title: "Your Title",
-    // ... other fields
-  },
-  // ... other sections
-};
-```
-
-### Modify Styling
-
-Edit `client/src/styles/global.css` for theme colors:
-
-```css
-:root {
-  --accent: #6C63FF;
-  --accent-2: #4DE2FF;
-  --accent-3: #00D9FF;
-  /* ... other variables */
-}
-```
-
-## 📸 Add Images
-
-1. Copy images to `client/public/images/`
-2. Reference them in `server/data.js`:
-
-```javascript
-profileImage: "/images/your-image.jpg"
-```
-
-## 🚢 Deployment
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Deploy Frontend (Vercel/Netlify)
-
-```bash
-cd client
-npm run build
-# Deploy the 'dist' folder to Vercel/Netlify
-```
-
-### Deploy Backend (Heroku/Railway/Render)
-
-```bash
-cd server
-# Follow your hosting provider's deployment guide
-```
-
-### Environment Variables
-
-Create `.env` files:
-
-**server/.env**
-```
-PORT=5000
-NODE_ENV=production
-```
-
-**client/.env** (if needed)
-```
-VITE_API_URL=https://your-backend-url.com
-```
-
-## 🎯 API Routes
-
-- `GET /api/portfolio` - Get all portfolio data
-- `GET /api/personal` - Personal info
-- `GET /api/about` - About section
-- `GET /api/hobbies` - Hobbies list
-- `GET /api/school` - School information
-- `GET /api/college` - College information
-- `GET /api/achievements` - Achievements
-- `GET /api/certificates` - Certificates
-- `GET /api/courses` - Courses
-- `GET /api/team` - Team members
-- `GET /api/hackathons` - Hackathon info
-- `GET /api/projects` - Projects list
-- `GET /api/social` - Social links
-
-## 🎭 Animation Features
-
-- **Scroll Animations** - Elements animate on viewport entry
-- **Hover Effects** - Cards lift on hover with shadow changes
-- **Entrance Animations** - Staggered component reveals
-- **Smooth Transitions** - Cubic-bezier easing for natural motion
-- **Custom Cursor** - Follows mouse with interactive feedback
-
-## 🌐 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## 📱 Responsive Breakpoints
-
-- Desktop: 1200px+
-- Tablet: 768px - 1199px
-- Mobile: < 768px
-
-## 🤝 Contributing
-
-Feel free to fork this project and customize it for your portfolio!
-
-## 📄 License
-
-MIT License - Feel free to use for personal or commercial projects
-
-## 📞 Support
-
-For issues or questions, please check the documentation or create an issue on GitHub.
+<p align="center">
+  <a href="https://www.linkedin.com/in/krishkumar-d-b4a7952b1"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="https://github.com/KRISHKUMAR1087"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
+  <a href="mailto:hello.krishkumardarji@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+  <a href="https://x.com/genzkrish"><img src="https://img.shields.io/badge/X%20(Twitter)-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" /></a>
+  <a href="https://www.instagram.com/genzkrish"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" /></a>
+</p>
 
 ---
 
-Built by Darji Krishkumar
+## 🏎️ About Me
+
+Computer Engineering undergraduate at **DEPSTAR (CHARUSAT)** with an active passion for building scalable web platforms, Gen-AI powered applications, and frictionless user experiences with meticulous attention to detail.
+
+- 🎓 **Education**: B.Tech in Computer Engineering at CHARUSAT (CGPA: 7.56/10)
+- 📍 **Location**: Anand / Charotar, Gujarat, India
+- 💼 **Focus Areas**: Full-Stack Web Architecture (MERN, FastAPI), Gen-AI Workflows & LLM Integration, UI/UX Design Systems
+- ⚡ **Fun Fact**: Passionate about Formula 1 aerodynamics & engineering telemetry, chess (played at State level U-17), and competitive programming puzzles.
+
+---
+
+## 🛠️ Technical Arsenal
+
+### Languages & Frameworks
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+
+### Databases & Cloud
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
+
+### UI/UX, AI & Tools
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+
+---
+
+## 🚀 Key Projects
+
+- **[Genie Website](https://github.com/KRISHKUMAR1087)**: AI web platform and multi-agent assistant designed to streamline digital tasks, generative workflows, and real-time smart user interactions with an ultra-responsive modern UI. *(React, FastAPI, Gen-AI, TailwindCSS)*
+- **[Appointment Management System](https://github.com/KRISHKUMAR1087)**: Full-stack scheduling and booking system built during internship featuring slot reservation, doctor/client dashboards, role-based access control, and automated reminders. *(React, Node.js, Express, PostgreSQL, REST APIs)*
+- **[VanniDoc Healthcare Platform](https://github.com/KRISHKUMAR1087)**: Centralized clinical documentation and patient records platform streamlining medical reporting, appointments, and secure data access. *(React, TypeScript, Node.js, MongoDB)*
+- **[F1-Themed Interactive Portfolio](https://github.com/KRISHKUMAR1087/Portfolio-MERN)**: Dynamic web portfolio integrating an F1 telemetry race line progress bar, interactive audio synthesizer, Apple Hello intro sequence, and an administrative portal. *(React, Node.js, Express, Framer Motion)*
+
+---
+
+## 🏆 Achievements & Milestones
+
+- 🥇 **Winner — Code Quest**: 1st place in university-level algorithmic problem solving & coding challenge.
+- 🎯 **Top Leaderboard — Ghost Hunt**: Technical treasure hunt & logic solving competition.
+- 🏅 **State Level Chess Participant**: Under-17 category representation.
+- 📜 **Certified in Software Design & Architecture**: University of Alberta (Coursera)
+- ☁️ **AWS Cloud Practitioner Essentials** & **Python for Everybody** Certifications.
+
+---
+
+## 📬 Connect with Me
+
+- 🌐 **Portfolio**: [Live Portfolio](https://portfolio-krish.vercel.app)
+- 💼 **LinkedIn**: [linkedin.com/in/krishkumar-d-b4a7952b1](https://www.linkedin.com/in/krishkumar-d-b4a7952b1)
+- 🐙 **GitHub**: [@KRISHKUMAR1087](https://github.com/KRISHKUMAR1087)
+- ✉️ **Email**: [hello.krishkumardarji@gmail.com](mailto:hello.krishkumardarji@gmail.com)
+- 📱 **Instagram**: [@genzkrish](https://www.instagram.com/genzkrish) | **X**: [@genzkrish](https://x.com/genzkrish)
+
+<p align="center">
+  <i>"Speed, precision, and engineering excellence — both on the track and in code."</i>
+</p>
